@@ -50413,7 +50413,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets/logo-black.svg":[["logo-black.eab7a939.svg","assets/logo-black.svg"],"assets/logo-black.svg"],"./assets/logo-white.svg":[["logo-white.7fec831f.svg","assets/logo-white.svg"],"assets/logo-white.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"App.js":[function(require,module,exports) {
+},{"./assets/waffle.jpg":[["waffle.35f6503f.jpg","assets/waffle.jpg"],"assets/waffle.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50466,7 +50466,7 @@ function App() {
 
 
   if (!window.walletConnection.isSignedIn()) {
-    return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to NEAR!"), /*#__PURE__*/_react.default.createElement("p", null, "To make use of the NEAR blockchain, you need to sign in. The button below will sign you in using NEAR Wallet."), /*#__PURE__*/_react.default.createElement("p", null, "By default, when your app runs in \"development\" mode, it connects to a test network (\"testnet\") wallet. This works just like the main network (\"mainnet\") wallet, but the NEAR Tokens on testnet aren't convertible to other currencies \u2013 they're just for testing!"), /*#__PURE__*/_react.default.createElement("p", null, "Go ahead and click the button below to try it out:"), /*#__PURE__*/_react.default.createElement("p", {
+    return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to Food4Fam!"), /*#__PURE__*/_react.default.createElement("p", null, "Before exploring the recipes, you need to sign in. The button below will sign you in using NEAR Wallet."), /*#__PURE__*/_react.default.createElement("p", null, "Go ahead and click the button below to try it out:"), /*#__PURE__*/_react.default.createElement("p", {
       style: {
         textAlign: 'center',
         marginTop: '2.5em'
@@ -50539,7 +50539,7 @@ function App() {
         color: 'var(--gray)',
         marginBottom: '0.5em'
       }
-    }, "Change greeting"), /*#__PURE__*/_react.default.createElement("div", {
+    }, "Change recipe title"), /*#__PURE__*/_react.default.createElement("div", {
       style: {
         display: 'flex'
       }
@@ -50556,19 +50556,7 @@ function App() {
       style: {
         borderRadius: '0 5px 5px 0'
       }
-    }, "Save")))), /*#__PURE__*/_react.default.createElement("p", null, "Look at that! A Hello World app! This greeting is stored on the NEAR blockchain. Check it out:"), /*#__PURE__*/_react.default.createElement("ol", null, /*#__PURE__*/_react.default.createElement("li", null, "Look in ", /*#__PURE__*/_react.default.createElement("code", null, "src/App.js"), " and ", /*#__PURE__*/_react.default.createElement("code", null, "src/utils.js"), " \u2013 you'll see ", /*#__PURE__*/_react.default.createElement("code", null, "getGreeting"), " and ", /*#__PURE__*/_react.default.createElement("code", null, "setGreeting"), " being called on ", /*#__PURE__*/_react.default.createElement("code", null, "contract"), ". What's this?"), /*#__PURE__*/_react.default.createElement("li", null, "Ultimately, this ", /*#__PURE__*/_react.default.createElement("code", null, "contract"), " code is defined in ", /*#__PURE__*/_react.default.createElement("code", null, "assembly/main.ts"), " \u2013 this is the source code for your ", /*#__PURE__*/_react.default.createElement("a", {
-      target: "_blank",
-      rel: "noreferrer",
-      href: "https://docs.near.org/docs/roles/developer/contracts/intro"
-    }, "smart contract"), "."), /*#__PURE__*/_react.default.createElement("li", null, "When you run ", /*#__PURE__*/_react.default.createElement("code", null, "yarn dev"), ", the code in ", /*#__PURE__*/_react.default.createElement("code", null, "assembly/main.ts"), " gets deployed to the NEAR testnet. You can see how this happens by looking in ", /*#__PURE__*/_react.default.createElement("code", null, "package.json"), " at the ", /*#__PURE__*/_react.default.createElement("code", null, "scripts"), " section to find the ", /*#__PURE__*/_react.default.createElement("code", null, "dev"), " command.")), /*#__PURE__*/_react.default.createElement("hr", null), /*#__PURE__*/_react.default.createElement("p", null, "To keep learning, check out ", /*#__PURE__*/_react.default.createElement("a", {
-      target: "_blank",
-      rel: "noreferrer",
-      href: "https://docs.near.org"
-    }, "the NEAR docs"), " or look through some ", /*#__PURE__*/_react.default.createElement("a", {
-      target: "_blank",
-      rel: "noreferrer",
-      href: "https://examples.near.org"
-    }, "example apps"), ".")), showNotification && /*#__PURE__*/_react.default.createElement(Notification, null))
+    }, "Save")))), /*#__PURE__*/_react.default.createElement("p", null, "Your recipes are stored in the NEAR blockchain.")), showNotification && /*#__PURE__*/_react.default.createElement(Notification, null))
   );
 } // this component gets rendered by App after the form is submitted
 
@@ -50631,7 +50619,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61998" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63218" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

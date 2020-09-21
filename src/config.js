@@ -1,4 +1,4 @@
-const CONTRACT_NAME = process.env.CONTRACT_NAME ||'food-4-family'
+const CONTRACT_NAME = process.env.CONTRACT_NAME ||'food-4-family.ecwireless.testnet'
 
 function getConfig(env) {
   switch (env) {
