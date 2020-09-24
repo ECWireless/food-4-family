@@ -7,7 +7,6 @@ import getConfig from './config'
 const { networkId } = getConfig(process.env.NODE_ENV || 'development')
 
 export default function App() {
-	const [recipe, setRecipe] = React.useState()
 	const [username, setUsername] = React.useState()
 	const [buttonDisabled, setButtonDisabled] = React.useState(true)
 	const [showNotification, setShowNotification] = React.useState(false)
@@ -24,7 +23,7 @@ export default function App() {
 		[]
 	)
 
-	const onAddUsername = () => {
+	const onRemoveUsername = () => {
 		window.contract.setUser({ accountId: window.accountId, username: null})
 		.then(() => {
 		window.contract.getUser({ accountId: window.accountId })
@@ -62,7 +61,7 @@ export default function App() {
 		<main>
 			
 			{username === null
-				? <h1>Hi {window.accountId}! Please add a username below.</h1>
+				? <h1>Hi {window.accountId}. Please add a username below.</h1>
 				: (
 					<div>
 						<h1>Hi {username}!</h1>
@@ -130,7 +129,7 @@ export default function App() {
 			<p>
 				Your username is stored in the NEAR blockchain.
 			</p>
-			<button onClick={onAddUsername}>Click to remove username</button>
+			<button onClick={onRemoveUsername}>Click to remove username</button>
 		</main>
 		{showNotification && <Notification />}
 		</>

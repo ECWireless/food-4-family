@@ -50413,7 +50413,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets/waffle.jpg":[["waffle.35f6503f.jpg","assets/waffle.jpg"],"assets/waffle.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"App.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50438,8 +50438,6 @@ const {
 } = (0, _config.default)("development" || 'development');
 
 function App() {
-  const [recipe, setRecipe] = _react.default.useState();
-
   const [username, setUsername] = _react.default.useState();
 
   const [buttonDisabled, setButtonDisabled] = _react.default.useState(true);
@@ -50456,7 +50454,7 @@ function App() {
     }
   }, []);
 
-  const onAddUsername = () => {
+  const onRemoveUsername = () => {
     window.contract.setUser({
       accountId: window.accountId,
       username: null
@@ -50486,7 +50484,7 @@ function App() {
       float: 'right'
     },
     onClick: _utils.logout
-  }, "Sign out"), /*#__PURE__*/_react.default.createElement("main", null, username === null ? /*#__PURE__*/_react.default.createElement("h1", null, "Hi ", window.accountId, "! Please add a username below.") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Hi ", username, "!"), /*#__PURE__*/_react.default.createElement("h1", null, "Add a recipe below.")), /*#__PURE__*/_react.default.createElement("form", {
+  }, "Sign out"), /*#__PURE__*/_react.default.createElement("main", null, username === null ? /*#__PURE__*/_react.default.createElement("h1", null, "Hi ", window.accountId, ". Please add a username below.") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Hi ", username, "!"), /*#__PURE__*/_react.default.createElement("h1", null, "Add a recipe below.")), /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: async event => {
       event.preventDefault();
       const {
@@ -50541,7 +50539,7 @@ function App() {
       borderRadius: '0 5px 5px 0'
     }
   }, "Save")))), /*#__PURE__*/_react.default.createElement("p", null, "Your username is stored in the NEAR blockchain."), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: onAddUsername
+    onClick: onRemoveUsername
   }, "Click to remove username")), showNotification && /*#__PURE__*/_react.default.createElement(Notification, null));
 }
 
@@ -50603,7 +50601,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55775" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57727" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
