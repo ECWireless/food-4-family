@@ -50221,19 +50221,19 @@ exports.keyStores = __importStar(require("./key_stores/browser-index"));
 __exportStar(require("./common-index"), exports);
 
 },{"./key_stores/browser-index":"../node_modules/near-api-js/lib/key_stores/browser-index.js","./common-index":"../node_modules/near-api-js/lib/common-index.js"}],"config.js":[function(require,module,exports) {
-const CONTRACT_NAME = "dev-1600729613163-2721011" || 'food-4-family';
+const CONTRACT_NAME = "dev-1600729613163-2721011" || 'food-4-family.ecwireless.testnet';
 
 function getConfig(env) {
   switch (env) {
     case 'production':
     case 'mainnet':
       return {
-        networkId: 'mainnet',
-        nodeUrl: 'https://rpc.mainnet.near.org',
+        networkId: 'testnet',
+        nodeUrl: 'https://rpc.testnet.near.org',
         contractName: CONTRACT_NAME,
-        walletUrl: 'https://wallet.near.org',
-        helperUrl: 'https://helper.mainnet.near.org',
-        explorerUrl: 'https://explorer.mainnet.near.org'
+        walletUrl: 'https://wallet.testnet.near.org',
+        helperUrl: 'https://helper.testnet.near.org',
+        explorerUrl: 'https://explorer.testnet.near.org'
       };
 
     case 'development':
@@ -50322,9 +50322,9 @@ async function initContract() {
 
   window.contract = await new _nearApiJs.Contract(window.walletConnection.account(), nearConfig.contractName, {
     // View methods are read only. They don't modify the state, but usually return some value.
-    viewMethods: ['getGreeting'],
+    viewMethods: ['getUser'],
     // Change methods can modify the state. But you don't receive the returned value when called.
-    changeMethods: ['setGreeting']
+    changeMethods: ['setUser']
   });
 }
 
@@ -50413,7 +50413,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./assets/waffle.jpg":[["waffle.35f6503f.jpg","assets/waffle.jpg"],"assets/waffle.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"App.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50438,35 +50438,37 @@ const {
 } = (0, _config.default)("development" || 'development');
 
 function App() {
-  // use React Hooks to store greeting in component state
-  const [greeting, setGreeting] = _react.default.useState(); // when the user has not yet interacted with the form, disable the button
+  const [username, setUsername] = _react.default.useState();
 
+  const [buttonDisabled, setButtonDisabled] = _react.default.useState(true);
 
-  const [buttonDisabled, setButtonDisabled] = _react.default.useState(true); // after submitting the form, we want to show Notification
-
-
-  const [showNotification, setShowNotification] = _react.default.useState(false); // The useEffect hook can be used to fire side-effects during render
-  // Learn more: https://reactjs.org/docs/hooks-intro.html
-
+  const [showNotification, setShowNotification] = _react.default.useState(false);
 
   _react.default.useEffect(() => {
-    // in this case, we only care to query the contract when signed in
     if (window.walletConnection.isSignedIn()) {
-      // window.contract is set by initContract in index.js
-      window.contract.getGreeting({
+      window.contract.getUser({
         accountId: window.accountId
-      }).then(greetingFromContract => {
-        setGreeting(greetingFromContract);
+      }).then(usernameFromContract => {
+        setUsername(usernameFromContract.username);
       });
     }
-  }, // The second argument to useEffect tells React when to re-run the effect
-  // Use an empty array to specify "only run on first render"
-  // This works because signing into NEAR Wallet reloads the page
-  []); // if not signed in, return early with sign-in prompt
+  }, []);
 
+  const onRemoveUsername = () => {
+    window.contract.setUser({
+      accountId: window.accountId,
+      username: null
+    }).then(() => {
+      window.contract.getUser({
+        accountId: window.accountId
+      }).then(usernameFromContract => {
+        setUsername(usernameFromContract.username);
+      });
+    });
+  };
 
   if (!window.walletConnection.isSignedIn()) {
-    return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to Food4Fam!"), /*#__PURE__*/_react.default.createElement("p", null, "Before exploring the recipes, you need to sign in. The button below will sign you in using NEAR Wallet."), /*#__PURE__*/_react.default.createElement("p", null, "Go ahead and click the button below to try it out:"), /*#__PURE__*/_react.default.createElement("p", {
+    return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, "Welcome to Food4Family!"), /*#__PURE__*/_react.default.createElement("p", null, "Before exploring the recipes, you need to sign in. The button below will sign you in using NEAR Wallet."), /*#__PURE__*/_react.default.createElement("p", null, "Go ahead and click the button below to try it out:"), /*#__PURE__*/_react.default.createElement("p", {
       style: {
         textAlign: 'center',
         marginTop: '2.5em'
@@ -50476,90 +50478,70 @@ function App() {
     }, "Sign in")));
   }
 
-  return (
-    /*#__PURE__*/
-    // use React Fragment, <>, to avoid wrapping elements in unnecessary divs
-    _react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
-      className: "link",
-      style: {
-        float: 'right'
-      },
-      onClick: _utils.logout
-    }, "Sign out"), /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h1", null, /*#__PURE__*/_react.default.createElement("label", {
-      htmlFor: "greeting",
-      style: {
-        color: 'var(--secondary)',
-        borderBottom: '2px solid var(--secondary)'
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "link",
+    style: {
+      float: 'right'
+    },
+    onClick: _utils.logout
+  }, "Sign out"), /*#__PURE__*/_react.default.createElement("main", null, username === null ? /*#__PURE__*/_react.default.createElement("h1", null, "Hi ", window.accountId, ". Please add a username below.") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Hi ", username, "!"), /*#__PURE__*/_react.default.createElement("h1", null, "Add a recipe below.")), /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: async event => {
+      event.preventDefault();
+      const {
+        fieldset,
+        username
+      } = event.target.elements;
+      const newUsername = username.value;
+      fieldset.disabled = true;
+
+      try {
+        await window.contract.setUser({
+          accountId: window.accountId,
+          username: newUsername
+        });
+      } catch (e) {
+        alert('Something went wrong! ' + 'Maybe you need to sign out and back in? ' + 'Check your browser console for more info.');
+        throw e;
+      } finally {
+        fieldset.disabled = false;
       }
-    }, greeting), ' '
-    /* React trims whitespace around tags; insert literal space character when needed */
-    , window.accountId, "!"), /*#__PURE__*/_react.default.createElement("form", {
-      onSubmit: async event => {
-        event.preventDefault(); // get elements from the form using their id attribute
 
-        const {
-          fieldset,
-          greeting
-        } = event.target.elements; // hold onto new user-entered value from React's SynthenticEvent for use after `await` call
-
-        const newGreeting = greeting.value; // disable the form while the value gets updated on-chain
-
-        fieldset.disabled = true;
-
-        try {
-          // make an update call to the smart contract
-          await window.contract.setGreeting({
-            // pass the value that the user entered in the greeting field
-            message: newGreeting
-          });
-        } catch (e) {
-          alert('Something went wrong! ' + 'Maybe you need to sign out and back in? ' + 'Check your browser console for more info.');
-          throw e;
-        } finally {
-          // re-enable the form, whether the call succeeded or failed
-          fieldset.disabled = false;
-        } // update local `greeting` variable to match persisted value
-
-
-        setGreeting(newGreeting); // show Notification
-
-        setShowNotification(true); // remove Notification again after css animation completes
-        // this allows it to be shown again next time the form is submitted
-
-        setTimeout(() => {
-          setShowNotification(false);
-        }, 11000);
-      }
-    }, /*#__PURE__*/_react.default.createElement("fieldset", {
-      id: "fieldset"
-    }, /*#__PURE__*/_react.default.createElement("label", {
-      htmlFor: "greeting",
-      style: {
-        display: 'block',
-        color: 'var(--gray)',
-        marginBottom: '0.5em'
-      }
-    }, "Change recipe title"), /*#__PURE__*/_react.default.createElement("div", {
-      style: {
-        display: 'flex'
-      }
-    }, /*#__PURE__*/_react.default.createElement("input", {
-      autoComplete: "off",
-      defaultValue: greeting,
-      id: "greeting",
-      onChange: e => setButtonDisabled(e.target.value === greeting),
-      style: {
-        flex: 1
-      }
-    }), /*#__PURE__*/_react.default.createElement("button", {
-      disabled: buttonDisabled,
-      style: {
-        borderRadius: '0 5px 5px 0'
-      }
-    }, "Save")))), /*#__PURE__*/_react.default.createElement("p", null, "Your recipes are stored in the NEAR blockchain.")), showNotification && /*#__PURE__*/_react.default.createElement(Notification, null))
-  );
-} // this component gets rendered by App after the form is submitted
-
+      setUsername(newUsername);
+      setShowNotification(true);
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 11000);
+    }
+  }, /*#__PURE__*/_react.default.createElement("fieldset", {
+    id: "fieldset"
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "username",
+    style: {
+      display: 'block',
+      color: 'var(--gray)',
+      marginBottom: '0.5em'
+    }
+  }, "Change your username"), /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: 'flex'
+    }
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    autoComplete: "off",
+    defaultValue: username,
+    id: "username",
+    onChange: e => setButtonDisabled(e.target.value === username),
+    style: {
+      flex: 1
+    }
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: buttonDisabled,
+    style: {
+      borderRadius: '0 5px 5px 0'
+    }
+  }, "Save")))), /*#__PURE__*/_react.default.createElement("p", null, "Your username is stored in the NEAR blockchain."), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: onRemoveUsername
+  }, "Click to remove username")), showNotification && /*#__PURE__*/_react.default.createElement(Notification, null));
+}
 
 function Notification() {
   const urlPrefix = `https://explorer.${networkId}.near.org/accounts`;
@@ -50569,7 +50551,7 @@ function Notification() {
     href: `${urlPrefix}/${window.accountId}`
   }, window.accountId), ' '
   /* React trims whitespace around tags; insert literal space character when needed */
-  , "called method: 'setGreeting' in contract:", ' ', /*#__PURE__*/_react.default.createElement("a", {
+  , "called method: 'setUser' in contract:", ' ', /*#__PURE__*/_react.default.createElement("a", {
     target: "_blank",
     rel: "noreferrer",
     href: `${urlPrefix}/${window.contract.contractId}`
@@ -50619,7 +50601,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63218" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62125" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
