@@ -140,8 +140,8 @@ table {
 }
 
 body {
-    background: #FFF;
-    font-family: acumin-pro-condensed,sans-serif;
+    background: #3C3E3B;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -149,6 +149,6 @@ body {
 }
 
 code {
-  font-family: acumin-pro-condensed, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
 }
