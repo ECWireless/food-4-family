@@ -2,7 +2,6 @@ import 'regenerator-runtime/runtime'
 import React from 'react'
 import styled from 'styled-components'
 import respondTo from './Breakpoints'
-import { login } from '../utils'
 import '../global.css'
 
 // Components

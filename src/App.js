@@ -1,18 +1,15 @@
 import 'regenerator-runtime/runtime'
 import React from 'react'
-import styled, { css } from 'styled-components'
-import respondTo from './components/Breakpoints'
 import { login, logout } from './utils'
 import './global.css'
 
 // Components
 import { colors } from './Components/theme'
 import { Main } from './Components/Main'
-import { Box1, Box3 } from './Components/Boxes'
-import { Button1 } from './Components/Buttons'
-import { Container, Flex, Col2, Col2Left, Col2Right } from './Components/Containers'
+import { Box3 } from './Components/Boxes'
+import { Container } from './Components/Containers'
 import SignedOut from './Components/SignedOut'
-import { H1, H3, P1 } from './Components/Typography'
+import { H3 } from './Components/Typography'
 
 // Images
 
