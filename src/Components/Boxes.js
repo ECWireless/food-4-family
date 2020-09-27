@@ -53,6 +53,7 @@ export const Box1 = styled.div`
 
             ${respondTo.xl`
                 width: ${props.width * 1.4}px;
+                margin-top: ${props.marginTop * 2}px;
             `}
         `};
 `

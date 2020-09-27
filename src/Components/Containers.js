@@ -3,7 +3,7 @@ import respondTo from './Breakpoints'
 
 export const Container = styled.div`
     position: relative;
-    width: 300px;
+    width: 250px;
     margin: auto;
 
     ${respondTo.xs`
@@ -19,11 +19,11 @@ export const Container = styled.div`
     `}
 
     ${respondTo.lg`
-        width: 1200px;
+        width: 1150px;
     `}
 
     ${respondTo.xl`
-        width: 1800px;
+        width: 1700px;
     `}
 `
 
@@ -45,6 +45,7 @@ export const Col2 = styled.div`
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto;
+            align-items: flex-end;
         `}
     `}
 `
@@ -53,8 +54,8 @@ export const Col2Left = styled.div`
     ${props => css`
         display: flex;
         flex-direction: column;
-        align-items: ${props.align};
-        justify-content: ${props.justify};
+        align-items: center;
+        justify-content: center;
 
         ${respondTo.xs`
         `}
@@ -67,6 +68,8 @@ export const Col2Left = styled.div`
         `}
 
         ${respondTo.lg`
+            align-items: ${props.align};
+            justify-content: ${props.justify};
         `}
     `}
 `
@@ -77,8 +80,13 @@ export const Col2Right = styled.div`
     flex-direction: column;
 
     ${props => css`
-        align-items: ${props.align};
-        justify-content: ${props.justify};
+        align-items: center;
+        justify-content: center;
+
+        ${respondTo.lg`
+            align-items: ${props.align};
+            justify-content: ${props.justify};
+        `}
     `}
 `
 
@@ -87,21 +95,6 @@ export const Col3 = styled.div`
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: 1fr 1fr 1fr;
-
-        ${respondTo.xs`
-        `}
-        
-        ${respondTo.sm`
-        `}
-
-        ${respondTo.md`
-        `}
-
-        ${respondTo.lg`
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto;
-        `}
     `}
 `
 

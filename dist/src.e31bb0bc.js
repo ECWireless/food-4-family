@@ -52530,7 +52530,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // Components
 const Main = _styledComponents.default.main`
     border: 2px solid ${_theme.colors.white};
-    margin: 5rem;
+    margin: 2rem;
     padding: 5rem 0;
     border-radius: 15px;
 `;
@@ -52604,6 +52604,7 @@ const Box1 = _styledComponents.default.div`
 
             ${_Breakpoints.default.xl`
                 width: ${props.width * 1.4}px;
+                margin-top: ${props.marginTop * 2}px;
             `}
         `};
 `;
@@ -52727,7 +52728,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const Container = _styledComponents.default.div`
     position: relative;
-    width: 300px;
+    width: 250px;
     margin: auto;
 
     ${_Breakpoints.default.xs`
@@ -52743,11 +52744,11 @@ const Container = _styledComponents.default.div`
     `}
 
     ${_Breakpoints.default.lg`
-        width: 1200px;
+        width: 1150px;
     `}
 
     ${_Breakpoints.default.xl`
-        width: 1800px;
+        width: 1700px;
     `}
 `;
 exports.Container = Container;
@@ -52769,6 +52770,7 @@ const Col2 = _styledComponents.default.div`
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto;
+            align-items: flex-end;
         `}
     `}
 `;
@@ -52777,8 +52779,8 @@ const Col2Left = _styledComponents.default.div`
     ${props => (0, _styledComponents.css)`
         display: flex;
         flex-direction: column;
-        align-items: ${props.align};
-        justify-content: ${props.justify};
+        align-items: center;
+        justify-content: center;
 
         ${_Breakpoints.default.xs`
         `}
@@ -52791,6 +52793,8 @@ const Col2Left = _styledComponents.default.div`
         `}
 
         ${_Breakpoints.default.lg`
+            align-items: ${props.align};
+            justify-content: ${props.justify};
         `}
     `}
 `;
@@ -52801,8 +52805,13 @@ const Col2Right = _styledComponents.default.div`
     flex-direction: column;
 
     ${props => (0, _styledComponents.css)`
-        align-items: ${props.align};
-        justify-content: ${props.justify};
+        align-items: center;
+        justify-content: center;
+
+        ${_Breakpoints.default.lg`
+            align-items: ${props.align};
+            justify-content: ${props.justify};
+        `}
     `}
 `;
 exports.Col2Right = Col2Right;
@@ -52811,21 +52820,6 @@ const Col3 = _styledComponents.default.div`
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: 1fr 1fr 1fr;
-
-        ${_Breakpoints.default.xs`
-        `}
-        
-        ${_Breakpoints.default.sm`
-        `}
-
-        ${_Breakpoints.default.md`
-        `}
-
-        ${_Breakpoints.default.lg`
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto;
-        `}
     `}
 `;
 exports.Col3 = Col3;
@@ -53146,24 +53140,24 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const H1 = _styledComponents.default.h1`
-    font-size: 2.8rem;
+    font-size: 3.4rem;
     font-weight: light;
-    line-height: 35px;
+    line-height: 30px;
     letter-spacing: 3px;
     font-family: 'Roboto', sans-serif;
 
     ${_Breakpoints.default.xs`
         line-height: 40px;
-        font-size: 3.4rem;
+        font-size: 5rem;
     `}
 
     ${_Breakpoints.default.sm`
-        font-size: 5.2rem;
+        font-size: 7rem;
         line-height: 70px;
     `}
 
     ${_Breakpoints.default.md`
-        font-size: 6.5rem;
+        font-size: 9rem;
     `}
 
     ${_Breakpoints.default.lg`
@@ -53171,7 +53165,7 @@ const H1 = _styledComponents.default.h1`
     `}
 
     ${_Breakpoints.default.xl`
-        font-size: 8.5rem;
+        font-size: 15rem;
     `}
 
     ${props => props.center && (0, _styledComponents.css)`
@@ -53216,6 +53210,7 @@ const H2 = _styledComponents.default.h2`
 
     ${_Breakpoints.default.lg`
         font-size: 5rem;
+        font-weight: 400;
     `}
 
     ${_Breakpoints.default.xl`
@@ -53238,7 +53233,7 @@ const H2 = _styledComponents.default.h2`
 exports.H2 = H2;
 const H3 = _styledComponents.default.h3`
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 25px;
     letter-spacing: 2px;
     font-family: 'Roboto', sans-serif;
@@ -53336,7 +53331,7 @@ const P1 = _styledComponents.default.p`
 
     ${_Breakpoints.default.lg`
         font-size: 2.2rem;
-        line-height: 25px;
+        line-height: 30px;
     `}
 
     ${_Breakpoints.default.xl`
@@ -53506,7 +53501,107 @@ const P5 = _styledComponents.default.p`
     `}
 `;
 exports.P5 = P5;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../components/Breakpoints":"components/Breakpoints.js"}],"App.js":[function(require,module,exports) {
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../components/Breakpoints":"components/Breakpoints.js"}],"assets/waffle.jpg":[function(require,module,exports) {
+module.exports = "/waffle.35f6503f.jpg";
+},{}],"Components/SignedOut.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+require("regenerator-runtime/runtime");
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+var _utils = require("../utils");
+
+require("../global.css");
+
+var _theme = require("./theme");
+
+var _Boxes = require("./Boxes");
+
+var _Buttons = require("./Buttons");
+
+var _Containers = require("./Containers");
+
+var _Typography = require("./Typography");
+
+var _waffle = _interopRequireDefault(require("../assets/waffle.jpg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+// Images
+const SignedOut = ({
+  login
+}) => {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    align: 'center',
+    justify: 'center'
+  }, /*#__PURE__*/_react.default.createElement(_Buttons.Button1, {
+    onClick: login
+  }, "Sign In")), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Col2, null, /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginBottom: 75
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Col2Left, {
+    justify: 'flex-end'
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    direction: 'column'
+  }, /*#__PURE__*/_react.default.createElement(_Typography.H1, {
+    color: _theme.colors.white
+  }, "Welcome to"), /*#__PURE__*/_react.default.createElement(_Boxes.Box1, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Typography.H1, {
+    bold: true,
+    color: _theme.colors.yellow
+  }, "Food4Family!"))))), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginBottom: 75
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Col2Right, {
+    align: 'flex-end'
+  }, /*#__PURE__*/_react.default.createElement(Logo, {
+    style: {
+      backgroundImage: `url(${_waffle.default})`
+    }
+  }))))), /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white
+  }, "Sign in to add your own recipes or form a Family."));
+};
+
+var _default = SignedOut;
+exports.default = _default;
+const Logo = _styledComponents.default.div`
+	height: 30rem;
+	width: 20rem;
+	background: ${_theme.colors.red};
+	background-position: center;
+	background-size: cover;
+	border-radius: 15px;
+	border: 5px solid ${_theme.colors.white};
+
+	${_Breakpoints.default.xs`
+		height: 30rem;
+		width: 30rem;
+    `}
+
+	${_Breakpoints.default.sm`
+		height: 30rem;
+		width: 40rem;
+    `}
+
+	${_Breakpoints.default.xl`
+		height: 50rem;
+		width: 60rem;
+    `}
+`;
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js","../utils":"utils.js","../global.css":"global.css","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js","../assets/waffle.jpg":"assets/waffle.jpg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53536,6 +53631,8 @@ var _Buttons = require("./Components/Buttons");
 
 var _Containers = require("./Components/Containers");
 
+var _SignedOut = _interopRequireDefault(require("./Components/SignedOut"));
+
 var _Typography = require("./Components/Typography");
 
 var _config = _interopRequireDefault(require("./config"));
@@ -53547,6 +53644,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Components
+// Images
 const {
   networkId
 } = (0, _config.default)("development" || 'development');
@@ -53582,31 +53680,14 @@ function App() {
   };
 
   if (!window.walletConnection.isSignedIn()) {
-    return /*#__PURE__*/_react.default.createElement(_Main.Main, null, /*#__PURE__*/_react.default.createElement(_Containers.Container, null, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
-      align: 'center',
-      justify: 'center'
-    }, /*#__PURE__*/_react.default.createElement(_Buttons.Button1, {
-      onClick: _utils.login
-    }, "Sign In")), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
-      marginTop: 50
-    }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
-      align: 'flex-end',
-      justify: 'space-between'
-    }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
-      direction: 'column'
-    }, /*#__PURE__*/_react.default.createElement(_Typography.H1, {
+    return /*#__PURE__*/_react.default.createElement(_Main.Main, null, /*#__PURE__*/_react.default.createElement(_Containers.Container, null, /*#__PURE__*/_react.default.createElement(_SignedOut.default, {
+      login: _utils.login
+    }), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+      marginTop: 75
+    }, /*#__PURE__*/_react.default.createElement(_Typography.H3, {
+      center: true,
       color: _theme.colors.white
-    }, "Welcome to"), /*#__PURE__*/_react.default.createElement(_Boxes.Box1, {
-      marginTop: 50
-    }, /*#__PURE__*/_react.default.createElement(_Typography.H1, {
-      bold: true,
-      color: _theme.colors.yellow
-    }, "Food4Family!"))), /*#__PURE__*/_react.default.createElement(Logo, null))), /*#__PURE__*/_react.default.createElement("p", null, "Before exploring the recipes, you need to sign in. The button below will sign you in using NEAR Wallet."), /*#__PURE__*/_react.default.createElement("p", null, "Go ahead and click the button below to try it out:"), /*#__PURE__*/_react.default.createElement("p", {
-      style: {
-        textAlign: 'center',
-        marginTop: '2.5em'
-      }
-    })));
+    }, "Search by:"))));
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("button", {
@@ -53688,15 +53769,7 @@ function Notification() {
     href: `${urlPrefix}/${window.contract.contractId}`
   }, window.contract.contractId), /*#__PURE__*/_react.default.createElement("footer", null, /*#__PURE__*/_react.default.createElement("div", null, "\u2714 Succeeded"), /*#__PURE__*/_react.default.createElement("div", null, "Just now")));
 }
-
-const Logo = _styledComponents.default.div`
-	height: 30rem;
-	width: 40rem;
-	background: ${_theme.colors.red};
-	border-radius: 15px;
-	border: 5px solid ${_theme.colors.white};
-`;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./components/Breakpoints":"components/Breakpoints.js","./utils":"utils.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Main":"Components/Main.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./components/Breakpoints":"components/Breakpoints.js","./utils":"utils.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Main":"Components/Main.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/SignedOut":"Components/SignedOut.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -53740,7 +53813,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62273" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64387" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

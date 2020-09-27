@@ -10,8 +10,11 @@ import { colors } from './Components/theme'
 import { Main } from './Components/Main'
 import { Box1, Box3 } from './Components/Boxes'
 import { Button1 } from './Components/Buttons'
-import { Container, Flex } from './Components/Containers'
-import { H1 } from './Components/Typography'
+import { Container, Flex, Col2, Col2Left, Col2Right } from './Components/Containers'
+import SignedOut from './Components/SignedOut'
+import { H1, H3, P1 } from './Components/Typography'
+
+// Images
 
 import getConfig from './config'
 const { networkId } = getConfig(process.env.NODE_ENV || 'development')
@@ -47,31 +50,14 @@ export default function App() {
 		return (
 		<Main>
 			<Container>
-				<Flex align={'center'} justify={'center'}>
-					<Button1 onClick={login}>
-						Sign In
-					</Button1>
-				</Flex>
-				<Box3 marginTop={50}>
-					<Flex align={'flex-end'} justify={'space-between'}>
-						<Flex direction={'column'}>
-							<H1 color={colors.white}>Welcome to</H1>
-							<Box1 marginTop={50}>
-								<H1 bold color={colors.yellow}>Food4Family!</H1>
-							</Box1>
-						</Flex>
-						<Logo />
-					</Flex>
+				<SignedOut
+					login={login}
+				/>
+				<Box3 marginTop={75}>
+					<H3 center color={colors.white}>
+						Search by:
+					</H3>
 				</Box3>
-				<p>
-					Before exploring the recipes, you need to sign in. The button
-					below will sign you in using NEAR Wallet.
-				</p>
-				<p>
-					Go ahead and click the button below to try it out:
-				</p>
-				<p style={{ textAlign: 'center', marginTop: '2.5em' }}>
-				</p>
 			</Container>
 		</Main>
 		)
@@ -180,11 +166,3 @@ export default function App() {
 		</aside>
 	)
 }
-
-const Logo = styled.div`
-	height: 30rem;
-	width: 40rem;
-	background: ${colors.red};
-	border-radius: 15px;
-	border: 5px solid ${colors.white};
-`

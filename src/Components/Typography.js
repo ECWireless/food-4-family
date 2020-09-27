@@ -2,24 +2,24 @@ import styled, { css } from 'styled-components'
 import respondTo from '../components/Breakpoints'
 
 export const H1 = styled.h1`
-    font-size: 2.8rem;
+    font-size: 3.4rem;
     font-weight: light;
-    line-height: 35px;
+    line-height: 30px;
     letter-spacing: 3px;
     font-family: 'Roboto', sans-serif;
 
     ${respondTo.xs`
         line-height: 40px;
-        font-size: 3.4rem;
+        font-size: 5rem;
     `}
 
     ${respondTo.sm`
-        font-size: 5.2rem;
+        font-size: 7rem;
         line-height: 70px;
     `}
 
     ${respondTo.md`
-        font-size: 6.5rem;
+        font-size: 9rem;
     `}
 
     ${respondTo.lg`
@@ -27,7 +27,7 @@ export const H1 = styled.h1`
     `}
 
     ${respondTo.xl`
-        font-size: 8.5rem;
+        font-size: 15rem;
     `}
 
     ${props => props.center && css`
@@ -72,6 +72,7 @@ export const H2 = styled.h2`
 
     ${respondTo.lg`
         font-size: 5rem;
+        font-weight: 400;
     `}
 
     ${respondTo.xl`
@@ -94,7 +95,7 @@ export const H2 = styled.h2`
 
 export const H3 = styled.h3`
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 25px;
     letter-spacing: 2px;
     font-family: 'Roboto', sans-serif;
@@ -192,7 +193,7 @@ export const P1 = styled.p`
 
     ${respondTo.lg`
         font-size: 2.2rem;
-        line-height: 25px;
+        line-height: 30px;
     `}
 
     ${respondTo.xl`
