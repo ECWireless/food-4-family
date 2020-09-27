@@ -1,6 +1,7 @@
 import 'regenerator-runtime/runtime'
 import React from 'react'
 import styled from 'styled-components'
+import Fade from 'react-reveal/Fade'
 import respondTo from './Breakpoints'
 import '../global.css'
 
@@ -29,23 +30,31 @@ const SignedOut = ({
                     <Box3 marginBottom={75}>
                         <Col2Left justify={'flex-end'}>
                             <Flex direction={'column'}>
-                                <H1 color={colors.white}>Welcome to</H1>
+                                <Fade>
+                                    <H1 color={colors.white}>Welcome to</H1>
+                                </Fade>
                                 <Box1 marginTop={50}>
-                                    <H1 bold color={colors.yellow}>Food4Family!</H1>
+                                    <Fade delay={200}>
+                                        <H1 bold color={colors.yellow}>Food4Family!</H1>
+                                    </Fade>
                                 </Box1>
                             </Flex>
                         </Col2Left>
                     </Box3>
                     <Box3 marginBottom={75}>
                         <Col2Right align={'flex-end'}>
-                            <Logo style={{ backgroundImage: `url(${LogoImage})` }} />
+                            <Fade delay={200}>
+                                <Logo style={{ backgroundImage: `url(${LogoImage})` }} />
+                            </Fade>
                         </Col2Right>
                     </Box3>
                 </Col2>
             </Box3>
-            <P1 color={colors.white}>
-                Sign in to add your own recipes or form a Family.
-            </P1>
+            <Fade bottom>
+                <P1 color={colors.white}>
+                    Sign in to add your own recipes or form a Family.
+                </P1>
+            </Fade>
         </>
     )
 }

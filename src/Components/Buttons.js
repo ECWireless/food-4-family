@@ -56,19 +56,74 @@ export const Button1 = styled.button`
 `
 
 export const Button2 = styled.button`
-    padding: 0 4rem;
-    height: 4rem;
+    background: ${colors.white};
     border: none;
     border-radius: 10px;
     box-shadow: ${shadows.button};
-    color: ${colors.primaryBlack};
-    background: ${colors.white};
-    text-transform: uppercase;
+    color: ${colors.red};
     font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    height: 4rem;
     letter-spacing: 1px;
+    padding: 0 1rem;
+    text-transform: uppercase;
     transition: all .3s ease;
-    font-family: 'Overpass', sans-serif;
-    font-weight: 700;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${respondTo.xs`
+        height: 4.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+        padding: 0 2rem;
+    `}
+
+    ${respondTo.sm`
+        height: 4.5rem;
+        font-size: 1.8rem;
+        padding: 0 3rem;
+    `}
+
+    ${respondTo.md`
+        height: 6rem;
+        padding: 0 5rem;
+    `}
+
+    ${respondTo.xl`
+        height: 8rem;
+        font-size: 3.2rem;
+        padding: 0 7rem;
+    `}
+
+    &:hover {
+        background: ${colors.red};
+        color: ${colors.white};
+        box-shadow: ${shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && css`
+        background: ${colors.red};
+        color: ${colors.white};
+    `}
+`
+
+export const Button3 = styled.button`
+    background: ${colors.yellow};
+    border: none;
+    border-radius: 10px;
+    box-shadow: ${shadows.button};
+    color: ${colors.black};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    height: 4rem;
+    letter-spacing: 1px;
+    padding: 0 2rem;
+    transition: all .3s ease;
     outline: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -81,16 +136,16 @@ export const Button2 = styled.button`
 
     ${respondTo.sm`
         height: 4.5rem;
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     `}
 
     ${respondTo.md`
-        height: 5rem;
+        height: 4rem;
     `}
 
     ${respondTo.xl`
         height: 6rem;
-        font-size: 1.8rem;
+        font-size: 2rem;
     `}
 
     &:hover {
