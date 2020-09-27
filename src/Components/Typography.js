@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import respondTo from '../components/Breakpoints'
+import respondTo from './Breakpoints'
 
 export const H1 = styled.h1`
     font-size: 3.4rem;
