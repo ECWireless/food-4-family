@@ -7,6 +7,8 @@ Food4Family is a relatively simple web app that allows users to share recipes on
 
 2. All Recipes, Families, and Users are housed on the NEAR blockchain. On top of this, governance over family decisions (i.e. which recipes are allowed into the cook book) is also completely handled by the blockchain. In the future, plenty of other governance and ownership features can be added as needed.
 
+Check out Food4Family now (still very much a work in progress)! https://food-4-family.vercel.app/
+
 
 Quick Start
 ===========
