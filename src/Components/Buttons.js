@@ -160,6 +160,60 @@ export const Button3 = styled.button`
         background: ${colors.secondaryBlue};
         color: ${colors.white};
     `}
+
+    ${props => props.disabled && css`
+        background: ${colors.secondaryBlue};
+        color: ${colors.white};
+        opacity: 0.8;
+
+        &:hover {
+            background: ${colors.secondaryBlue};
+            color: ${colors.white};
+            box-shadow: none;
+            transform: scale(1);
+            cursor: not-allowed;
+        }
+    `}
+`
+
+export const Button4 = styled.button`
+    background: ${colors.white};
+    border: 1px solid red;
+    border-radius: 10px;
+    box-shadow: ${shadows.button};
+    color: ${colors.black};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    height: 3rem;
+    padding: 0 1rem;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${respondTo.xs`
+        height: 3rem;
+        font-size: 1.2rem;
+    `}
+
+    ${respondTo.xl`
+        height: 4rem;
+        font-size: 1.4rem;
+    `}
+
+    &:hover {
+        background: red;
+        color: ${colors.white};
+        box-shadow: ${shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && css`
+        background: ${colors.secondaryBlue};
+        color: ${colors.white};
+    `}
 `
 
 export const ButtonMenu = ({ setSidebar }) => {

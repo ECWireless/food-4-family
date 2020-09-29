@@ -1,7 +1,11 @@
 food-4-family
 ==================
 
-This app was initialized with [create-near-app]
+Food4Family is a relatively simple web app that allows users to share recipes online. This differs from standard recipe sites in two key ways:
+
+1. Users have the opportunity to form "families" amongst themselves, in order to publish their own "family cook book." This Cook Book is a compilation of recipes published by each User, and also voted in by the Family. Users can create as many Families as they like, and can also request their recipe be compiled in multiple Family Cook Books.
+
+2. All Recipes, Families, and Users are housed on the NEAR blockchain. On top of this, governance over family decisions (i.e. which recipes are allowed into the cook book) is also completely handled by the blockchain. In the future, plenty of other governance and ownership features can be added as needed.
 
 
 Quick Start
@@ -14,9 +18,7 @@ To run this project locally:
 3. Run the local development server: `yarn dev` (see `package.json` for a
    full list of `scripts` you can run with `yarn`)
 
-Now you'll have a local development environment backed by the NEAR TestNet!
-
-Go ahead and play with the app and the code. As you make code changes, the app will automatically reload.
+Now you'll have a local development environment backed by the NEAR TestNet.
 
 
 Exploring The Code
