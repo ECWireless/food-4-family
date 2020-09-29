@@ -54635,7 +54635,10 @@ function App() {
       }, 11000);
     }
   }, /*#__PURE__*/_react.default.createElement(FieldsetUsername, {
-    id: "fieldset"
+    id: "fieldset",
+    direction: 'column',
+    justify: 'center',
+    align: 'center'
   }, /*#__PURE__*/_react.default.createElement(LabelUsername, {
     center: true,
     color: _theme.colors.white,
@@ -54816,7 +54819,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54660" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59020" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

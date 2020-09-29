@@ -121,7 +121,12 @@ export default function App() {
 									setShowNotification(false)
 								}, 11000)
 							}}>
-								<FieldsetUsername id="fieldset">
+								<FieldsetUsername
+									id="fieldset"
+									direction={'column'}
+									justify={'center'}
+									align={'center'}
+								>
 									<LabelUsername
 										center
 										color={colors.white}
