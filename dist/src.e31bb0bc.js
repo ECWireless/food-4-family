@@ -52336,7 +52336,7 @@ async function initContract() {
 
   window.contract = await new _nearApiJs.Contract(window.walletConnection.account(), nearConfig.contractName, {
     // View methods are read only. They don't modify the state, but usually return some value.
-    viewMethods: ['getUser', 'getUsersIdList'],
+    viewMethods: ['getUser', 'getGlobalUserIds'],
     // Change methods can modify the state. But you don't receive the returned value when called.
     changeMethods: ['setUser', 'deleteGlobalUser']
   });
@@ -54774,8 +54774,8 @@ function App() {
     }
   }, []);
 
-  const onGetUsersIdList = () => {
-    window.contract.getUsersIdList().then(resp => {
+  const onGetGlobalUserIds = () => {
+    window.contract.getGlobalUserIds().then(resp => {
       console.log(resp);
     });
   };
@@ -54829,7 +54829,7 @@ function App() {
   }, /*#__PURE__*/_react.default.createElement(_Buttons.Button1, {
     onClick: _utils.logout
   }, "Sign Out"))), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: onGetUsersIdList
+    onClick: onGetGlobalUserIds
   }, "Get All Users"), /*#__PURE__*/_react.default.createElement(_Profile.default, {
     username: username,
     buttonDisabled: buttonDisabled,
@@ -54887,7 +54887,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64555" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54731" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

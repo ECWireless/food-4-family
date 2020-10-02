@@ -42,8 +42,8 @@ export default function App() {
 		[]
 	)
 
-	const onGetUsersIdList = () => {
-		window.contract.getUsersIdList()
+	const onGetGlobalUserIds = () => {
+		window.contract.getGlobalUserIds()
 		.then(resp => {
 			console.log(resp)
 		})
@@ -102,7 +102,7 @@ export default function App() {
 						</Button1>
 					</Box3>
 				</Flex>
-				<button onClick={onGetUsersIdList}>Get All Users</button>
+				<button onClick={onGetGlobalUserIds}>Get All Users</button>
 
 				<Profile
 					username={username}

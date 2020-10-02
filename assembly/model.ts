@@ -1,8 +1,9 @@
 import { 
     context,
     PersistentMap,
- } from "near-sdk-as";
+} from "near-sdk-as";
 
+// Class for each user
 @nearBindgen
 export class User {
     sender: string;
@@ -14,26 +15,14 @@ export class User {
     }
 }
 
+// Class for creating a list of users
 @nearBindgen
-export class UsersList {
+export class UserIdsList {
   constructor(public id: Array<string>) {}
 }
 
-@nearBindgen
-export class Recipe {
-    sender: string;
-    title: string;
-    ingredients: string;
-    instructions: string;
-  
-    constructor(title: string, ingredients: string, instructions: string) {
-        this.sender = context.sender;
-        this.title = title;
-        this.ingredients = ingredients;
-        this.instructions = instructions;
-    }
-}
-
+// Storage collection for each new user; Key being the users accoundId
 export const users = new PersistentMap<string, User>("users");
 
-export const displayUsers = new PersistentMap<string, UsersList>("show");
+// Storage collection for the list of users; only stores users' accoundId
+export const displayUserIds = new PersistentMap<string, UserIdsList>("show");
