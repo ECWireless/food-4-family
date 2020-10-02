@@ -52336,7 +52336,7 @@ async function initContract() {
 
   window.contract = await new _nearApiJs.Contract(window.walletConnection.account(), nearConfig.contractName, {
     // View methods are read only. They don't modify the state, but usually return some value.
-    viewMethods: ['getUser', 'getGlobalUserIds'],
+    viewMethods: ['getUser', 'getGlobalUserIds', 'getAllUsers'],
     // Change methods can modify the state. But you don't receive the returned value when called.
     changeMethods: ['setUser', 'deleteGlobalUser']
   });
@@ -52479,180 +52479,7 @@ const shadows = {
   card: '0px 3px 6px rgba(0,0,0,.4)'
 };
 exports.shadows = shadows;
-},{}],"Components/Boxes.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Box3 = exports.Box2 = exports.Box1 = void 0;
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
-var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const Box1 = _styledComponents.default.div`
-    ${props => (0, _styledComponents.css)`
-            height: ${props.height};
-            width: ${props.width * .4}px;
-            margin-top: ${props.marginTop * .4}px;
-            margin-bottom: ${props.marginBottom * .4}px;
-            margin-left: ${props.marginLeft * .4}px;
-            margin-right: ${props.marginRight * .4}px;
-            padding-left: ${props.paddingLeft * .4}px;
-            padding-right: ${props.paddingRight * .4}px;
-            padding-top: ${props.paddingTop * .4}px;
-            padding-bottom: ${props.paddingBottom * .4}px;
-
-            ${_Breakpoints.default.xs`
-                width: ${props.width * .45}px;
-                margin-top: ${props.marginTop * .45}px;
-                margin-bottom: ${props.marginBottom * .45}px;
-                margin-left: ${props.marginLeft * .45}px;
-                margin-right: ${props.marginRight * .45}px;
-                padding-left: ${props.paddingLeft * .45}px;
-                padding-right: ${props.paddingRight * .45}px;
-                padding-top: ${props.paddingTop * .45}px;
-                padding-bottom: ${props.paddingBottom * .45}px;
-            `}
-            
-            ${_Breakpoints.default.sm`
-                width: ${props.width * .7}px;
-                margin-top: ${props.marginTop * .7}px;
-                margin-bottom: ${props.marginBottom * .7}px;
-                margin-left: ${props.marginLeft * .7}px;
-                margin-right: ${props.marginRight * .7}px;
-                padding-left: ${props.paddingLeft * .7}px;
-                padding-right: ${props.paddingRight * .7}px;
-                padding-top: ${props.paddingTop * .7}px;
-                padding-bottom: ${props.paddingBottom * .7}px;
-            `}
-
-            ${_Breakpoints.default.md`
-                width: ${props.width}px;
-                margin-top: ${props.marginTop}px;
-                margin-bottom: ${props.marginBottom}px;
-                margin-left: ${props.marginLeft}px;
-                margin-right: ${props.marginRight}px;
-                padding-left: ${props.paddingLeft}px;
-                padding-right: ${props.paddingRight}px;
-                padding-top: ${props.paddingTop}px;
-                padding-bottom: ${props.paddingBottom}px;
-            `}
-
-            ${_Breakpoints.default.xl`
-                width: ${props.width * 1.4}px;
-                margin-top: ${props.marginTop * 2}px;
-            `}
-        `};
-`;
-exports.Box1 = Box1;
-const Box2 = _styledComponents.default.div`
-    ${props => (0, _styledComponents.css)`
-            width: ${props.width * .6}px;
-            margin-top: ${props.marginTop * .5}px;
-            margin-bottom: ${props.marginBottom * .5}px;
-            margin-left: ${props.marginLeft * .5}px;
-            margin-right: ${props.marginRight * .5}px;
-            padding-top: ${props.paddingTop * .5}px;
-            padding-bottom: ${props.paddingBottom * .5}px;
-
-            ${_Breakpoints.default.xs`
-                width: ${props.width * .7}px;
-                margin-top: ${props.marginTop * .45}px;
-                margin-bottom: ${props.marginBottom * .45}px;
-                margin-left: ${props.marginLeft * .45}px;
-                margin-right: ${props.marginRight * .45}px;
-                padding-top: ${props.paddingTop * .45}px;
-                padding-bottom: ${props.paddingBottom * .45}px;
-            `}
-            
-            ${_Breakpoints.default.sm`
-                width: ${props.width}px;
-                margin-top: ${props.marginTop * .7}px;
-                margin-bottom: ${props.marginBottom * .7}px;
-                margin-left: ${props.marginLeft * .7}px;
-                margin-right: ${props.marginRight * .7}px;
-                padding-top: ${props.paddingTop * .7}px;
-                padding-bottom: ${props.paddingBottom * .7}px;
-            `}
-
-            ${_Breakpoints.default.md`
-                margin-top: ${props.marginTop}px;
-                margin-bottom: ${props.marginBottom}px;
-                margin-left: ${props.marginLeft}px;
-                margin-right: ${props.marginRight}px;
-                padding-top: ${props.paddingTop}px;
-                padding-bottom: ${props.paddingBottom}px;
-            `}
-
-            ${_Breakpoints.default.xl`
-                width: ${props.width * 1.4}px;
-            `}
-        `};
-`;
-exports.Box2 = Box2;
-const Box3 = _styledComponents.default.div`
-    ${props => (0, _styledComponents.css)`
-            width: ${props.width * .45}px;
-            margin-top: ${props.marginTop * .7}px;
-            margin-bottom: ${props.marginBottom * .7}px;
-            margin-left: ${props.marginLeft * .7}px;
-            margin-right: ${props.marginRight * .7}px;
-            padding-top: ${props.paddingTop * .7}px;
-            padding-bottom: ${props.paddingBottom * .7}px;
-            padding-left: ${props.paddingLeft * .7}px;
-            padding-right: ${props.paddingRight * .7}px;
-
-            ${_Breakpoints.default.xs`
-                width: ${props.width * .6}px;
-                margin-top: ${props.marginTop * .8}px;
-                margin-bottom: ${props.marginBottom * .8}px;
-                margin-left: ${props.marginLeft * .8}px;
-                margin-right: ${props.marginRight * .8}px;
-                padding-top: ${props.paddingTop * .8}px;
-                padding-bottom: ${props.paddingBottom * .8}px;
-                padding-left: ${props.paddingLeft * .8}px;
-                padding-right: ${props.paddingRight * .8}px;
-            `}
-            
-            ${_Breakpoints.default.sm`
-                width: ${props.width * .8}px;
-                margin-top: ${props.marginTop * .9}px;
-                margin-bottom: ${props.marginBottom * .9}px;
-                margin-left: ${props.marginLeft * .9}px;
-                margin-right: ${props.marginRight * .9}px;
-                padding-top: ${props.paddingTop * .9}px;
-                padding-bottom: ${props.paddingBottom * .9}px;
-                padding-left: ${props.paddingLeft * .9}px;
-                padding-right: ${props.paddingRight * .9}px;
-            `}
-
-            ${_Breakpoints.default.md`
-                width: ${props.width}px;
-                margin-top: ${props.marginTop}px;
-                margin-bottom: ${props.marginBottom}px;
-                margin-left: ${props.marginLeft}px;
-                margin-right: ${props.marginRight}px;
-                padding-top: ${props.paddingTop}px;
-                padding-bottom: ${props.paddingBottom}px;
-                padding-left: ${props.paddingLeft}px;
-                padding-right: ${props.paddingRight}px;
-            `}
-
-            ${_Breakpoints.default.xl`
-                width: ${props.width * 1.5}px;
-            `}
-        `};
-`;
-exports.Box3 = Box3;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Containers.js":[function(require,module,exports) {
+},{}],"Components/Containers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52851,330 +52678,7 @@ const Flex = _styledComponents.default.div`
     `}
 `;
 exports.Flex = Flex;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Buttons.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ButtonMenu = exports.Button4 = exports.Button3 = exports.Button2 = exports.Button1 = void 0;
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
-var _theme = require("./theme");
-
-var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
-
-var _Boxes = require("./Boxes");
-
-var _Containers = require("./Containers");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const Button1 = _styledComponents.default.button`
-    background: ${_theme.colors.red};
-    border: none;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.white};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    height: 4rem;
-    letter-spacing: 1px;
-    padding: 0 4rem;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 4.5rem;
-        font-size: 1.4rem;
-        letter-spacing: 3px;
-    `}
-
-    ${_Breakpoints.default.sm`
-        height: 4.5rem;
-        font-size: 1.8rem;
-    `}
-
-    ${_Breakpoints.default.md`
-        height: 5rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 6rem;
-        font-size: 2rem;
-    `}
-
-    &:hover {
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-    `}
-`;
-exports.Button1 = Button1;
-const Button2 = _styledComponents.default.button`
-    background: ${_theme.colors.white};
-    border: none;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.red};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    height: 4rem;
-    letter-spacing: 1px;
-    padding: 0 1rem;
-    text-transform: uppercase;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 4.5rem;
-        font-size: 1.4rem;
-        letter-spacing: 3px;
-        padding: 0 2rem;
-    `}
-
-    ${_Breakpoints.default.sm`
-        height: 4.5rem;
-        font-size: 1.8rem;
-        padding: 0 3rem;
-    `}
-
-    ${_Breakpoints.default.md`
-        height: 6rem;
-        padding: 0 5rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 8rem;
-        font-size: 3.2rem;
-        padding: 0 7rem;
-    `}
-
-    &:hover {
-        background: ${_theme.colors.red};
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.red};
-        color: ${_theme.colors.white};
-    `}
-`;
-exports.Button2 = Button2;
-const Button3 = _styledComponents.default.button`
-    background: ${_theme.colors.yellow};
-    border: none;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.black};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    height: 4rem;
-    letter-spacing: 1px;
-    padding: 0 2rem;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 4.5rem;
-        font-size: 1.4rem;
-        letter-spacing: 3px;
-    `}
-
-    ${_Breakpoints.default.sm`
-        height: 4.5rem;
-        font-size: 1.8rem;
-    `}
-
-    ${_Breakpoints.default.md`
-        height: 4rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 6rem;
-        font-size: 2rem;
-    `}
-
-    &:hover {
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-    `}
-
-    ${props => props.disabled && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-        opacity: 0.8;
-
-        &:hover {
-            background: ${_theme.colors.secondaryBlue};
-            color: ${_theme.colors.white};
-            box-shadow: none;
-            transform: scale(1);
-            cursor: not-allowed;
-        }
-    `}
-`;
-exports.Button3 = Button3;
-const Button4 = _styledComponents.default.button`
-    background: ${_theme.colors.white};
-    border: 1px solid red;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.black};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    height: 3rem;
-    padding: 0 1rem;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 3rem;
-        font-size: 1.2rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 4rem;
-        font-size: 1.4rem;
-    `}
-
-    &:hover {
-        background: red;
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-    `}
-`;
-exports.Button4 = Button4;
-
-const ButtonMenu = ({
-  setSidebar
-}) => {
-  return /*#__PURE__*/React.createElement(ButtonContainer, {
-    onClick: () => setSidebar(true)
-  }, /*#__PURE__*/React.createElement(_Containers.Flex, {
-    direction: 'column',
-    justify: 'space-between'
-  }, /*#__PURE__*/React.createElement(_Boxes.Box3, null, /*#__PURE__*/React.createElement(ButtonMenuLine, {
-    width: 35,
-    color: 'white'
-  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
-    marginTop: 8
-  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
-    width: 35,
-    color: 'white'
-  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
-    marginTop: 8
-  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
-    width: 35,
-    color: 'white'
-  }))));
-};
-
-exports.ButtonMenu = ButtonMenu;
-const ButtonContainer = _styledComponents.default.div`
-    position: absolute;
-    left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: ${_theme.colors.white};
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-    transition: all .5s ease;
-    z-index: 101;
-
-    &:hover,
-    &:focus,
-    &:active {
-		background: ${_theme.colors.greyHover};
-        cursor: pointer;
-    }
-
-    ${_Breakpoints.default.xs`
-        left: 4rem;
-        width: 55px;
-        height: 55px;
-    `}
-
-    ${_Breakpoints.default.sm`
-        width: 60px;
-        height: 60px;
-    `}
-
-    ${_Breakpoints.default.md`
-    `}
-
-    ${_Breakpoints.default.lg`
-        display: none;
-    `}
-`;
-const ButtonMenuLine = _styledComponents.default.div`
-    background: ${_theme.colors.gold};
-
-    ${props => (0, _styledComponents.css)`
-        width: ${props.width * .8}px;
-        height: 2px;
-        margin: 0 auto;
-
-        ${_Breakpoints.default.xs`
-            width: ${props.width * .9}px;
-            height: 2px;
-            margin: 0 auto;
-        `}
-
-        ${_Breakpoints.default.sm`
-            width: ${props.width}px;
-            height: 3px;
-            margin: 0 auto;
-        `}
-    `};
-`;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Breakpoints":"Components/Breakpoints.js","./Boxes":"Components/Boxes.js","./Containers":"Components/Containers.js"}],"Components/Typography.js":[function(require,module,exports) {
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Typography.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53554,7 +53058,538 @@ const P5 = _styledComponents.default.p`
     `}
 `;
 exports.P5 = P5;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Filters.js":[function(require,module,exports) {
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Authors.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _theme = require("./theme");
+
+var _Containers = require("./Containers");
+
+var _Typography = require("./Typography");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+const Authors = ({
+  filter,
+  authors
+}) => {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, filter === 'authors' && /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    justify: 'space-between'
+  }, authors === null ? /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white
+  }, "There are no authors.") : authors.map((author, index) => /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white,
+    key: index
+  }, author.username))));
+};
+
+var _default = Authors;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","./theme":"Components/theme.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Boxes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Box3 = exports.Box2 = exports.Box1 = void 0;
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Box1 = _styledComponents.default.div`
+    ${props => (0, _styledComponents.css)`
+            height: ${props.height};
+            width: ${props.width * .4}px;
+            margin-top: ${props.marginTop * .4}px;
+            margin-bottom: ${props.marginBottom * .4}px;
+            margin-left: ${props.marginLeft * .4}px;
+            margin-right: ${props.marginRight * .4}px;
+            padding-left: ${props.paddingLeft * .4}px;
+            padding-right: ${props.paddingRight * .4}px;
+            padding-top: ${props.paddingTop * .4}px;
+            padding-bottom: ${props.paddingBottom * .4}px;
+
+            ${_Breakpoints.default.xs`
+                width: ${props.width * .45}px;
+                margin-top: ${props.marginTop * .45}px;
+                margin-bottom: ${props.marginBottom * .45}px;
+                margin-left: ${props.marginLeft * .45}px;
+                margin-right: ${props.marginRight * .45}px;
+                padding-left: ${props.paddingLeft * .45}px;
+                padding-right: ${props.paddingRight * .45}px;
+                padding-top: ${props.paddingTop * .45}px;
+                padding-bottom: ${props.paddingBottom * .45}px;
+            `}
+            
+            ${_Breakpoints.default.sm`
+                width: ${props.width * .7}px;
+                margin-top: ${props.marginTop * .7}px;
+                margin-bottom: ${props.marginBottom * .7}px;
+                margin-left: ${props.marginLeft * .7}px;
+                margin-right: ${props.marginRight * .7}px;
+                padding-left: ${props.paddingLeft * .7}px;
+                padding-right: ${props.paddingRight * .7}px;
+                padding-top: ${props.paddingTop * .7}px;
+                padding-bottom: ${props.paddingBottom * .7}px;
+            `}
+
+            ${_Breakpoints.default.md`
+                width: ${props.width}px;
+                margin-top: ${props.marginTop}px;
+                margin-bottom: ${props.marginBottom}px;
+                margin-left: ${props.marginLeft}px;
+                margin-right: ${props.marginRight}px;
+                padding-left: ${props.paddingLeft}px;
+                padding-right: ${props.paddingRight}px;
+                padding-top: ${props.paddingTop}px;
+                padding-bottom: ${props.paddingBottom}px;
+            `}
+
+            ${_Breakpoints.default.xl`
+                width: ${props.width * 1.4}px;
+                margin-top: ${props.marginTop * 2}px;
+            `}
+        `};
+`;
+exports.Box1 = Box1;
+const Box2 = _styledComponents.default.div`
+    ${props => (0, _styledComponents.css)`
+            width: ${props.width * .6}px;
+            margin-top: ${props.marginTop * .5}px;
+            margin-bottom: ${props.marginBottom * .5}px;
+            margin-left: ${props.marginLeft * .5}px;
+            margin-right: ${props.marginRight * .5}px;
+            padding-top: ${props.paddingTop * .5}px;
+            padding-bottom: ${props.paddingBottom * .5}px;
+
+            ${_Breakpoints.default.xs`
+                width: ${props.width * .7}px;
+                margin-top: ${props.marginTop * .45}px;
+                margin-bottom: ${props.marginBottom * .45}px;
+                margin-left: ${props.marginLeft * .45}px;
+                margin-right: ${props.marginRight * .45}px;
+                padding-top: ${props.paddingTop * .45}px;
+                padding-bottom: ${props.paddingBottom * .45}px;
+            `}
+            
+            ${_Breakpoints.default.sm`
+                width: ${props.width}px;
+                margin-top: ${props.marginTop * .7}px;
+                margin-bottom: ${props.marginBottom * .7}px;
+                margin-left: ${props.marginLeft * .7}px;
+                margin-right: ${props.marginRight * .7}px;
+                padding-top: ${props.paddingTop * .7}px;
+                padding-bottom: ${props.paddingBottom * .7}px;
+            `}
+
+            ${_Breakpoints.default.md`
+                margin-top: ${props.marginTop}px;
+                margin-bottom: ${props.marginBottom}px;
+                margin-left: ${props.marginLeft}px;
+                margin-right: ${props.marginRight}px;
+                padding-top: ${props.paddingTop}px;
+                padding-bottom: ${props.paddingBottom}px;
+            `}
+
+            ${_Breakpoints.default.xl`
+                width: ${props.width * 1.4}px;
+            `}
+        `};
+`;
+exports.Box2 = Box2;
+const Box3 = _styledComponents.default.div`
+    ${props => (0, _styledComponents.css)`
+            width: ${props.width * .45}px;
+            margin-top: ${props.marginTop * .7}px;
+            margin-bottom: ${props.marginBottom * .7}px;
+            margin-left: ${props.marginLeft * .7}px;
+            margin-right: ${props.marginRight * .7}px;
+            padding-top: ${props.paddingTop * .7}px;
+            padding-bottom: ${props.paddingBottom * .7}px;
+            padding-left: ${props.paddingLeft * .7}px;
+            padding-right: ${props.paddingRight * .7}px;
+
+            ${_Breakpoints.default.xs`
+                width: ${props.width * .6}px;
+                margin-top: ${props.marginTop * .8}px;
+                margin-bottom: ${props.marginBottom * .8}px;
+                margin-left: ${props.marginLeft * .8}px;
+                margin-right: ${props.marginRight * .8}px;
+                padding-top: ${props.paddingTop * .8}px;
+                padding-bottom: ${props.paddingBottom * .8}px;
+                padding-left: ${props.paddingLeft * .8}px;
+                padding-right: ${props.paddingRight * .8}px;
+            `}
+            
+            ${_Breakpoints.default.sm`
+                width: ${props.width * .8}px;
+                margin-top: ${props.marginTop * .9}px;
+                margin-bottom: ${props.marginBottom * .9}px;
+                margin-left: ${props.marginLeft * .9}px;
+                margin-right: ${props.marginRight * .9}px;
+                padding-top: ${props.paddingTop * .9}px;
+                padding-bottom: ${props.paddingBottom * .9}px;
+                padding-left: ${props.paddingLeft * .9}px;
+                padding-right: ${props.paddingRight * .9}px;
+            `}
+
+            ${_Breakpoints.default.md`
+                width: ${props.width}px;
+                margin-top: ${props.marginTop}px;
+                margin-bottom: ${props.marginBottom}px;
+                margin-left: ${props.marginLeft}px;
+                margin-right: ${props.marginRight}px;
+                padding-top: ${props.paddingTop}px;
+                padding-bottom: ${props.paddingBottom}px;
+                padding-left: ${props.paddingLeft}px;
+                padding-right: ${props.paddingRight}px;
+            `}
+
+            ${_Breakpoints.default.xl`
+                width: ${props.width * 1.5}px;
+            `}
+        `};
+`;
+exports.Box3 = Box3;
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Buttons.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ButtonMenu = exports.Button4 = exports.Button3 = exports.Button2 = exports.Button1 = void 0;
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _theme = require("./theme");
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+var _Boxes = require("./Boxes");
+
+var _Containers = require("./Containers");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Button1 = _styledComponents.default.button`
+    background: ${_theme.colors.red};
+    border: none;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.white};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    height: 4rem;
+    letter-spacing: 1px;
+    padding: 0 4rem;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 4.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+    `}
+
+    ${_Breakpoints.default.sm`
+        height: 4.5rem;
+        font-size: 1.8rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        height: 5rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 6rem;
+        font-size: 2rem;
+    `}
+
+    &:hover {
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && (0, _styledComponents.css)`
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+    `}
+`;
+exports.Button1 = Button1;
+const Button2 = _styledComponents.default.button`
+    background: ${_theme.colors.white};
+    border: none;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.red};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    height: 4rem;
+    letter-spacing: 1px;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 4.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+        padding: 0 2rem;
+    `}
+
+    ${_Breakpoints.default.sm`
+        height: 4.5rem;
+        font-size: 1.8rem;
+        padding: 0 3rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        height: 6rem;
+        padding: 0 5rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 8rem;
+        font-size: 3.2rem;
+        padding: 0 7rem;
+    `}
+
+    &:hover {
+        background: ${_theme.colors.red};
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && (0, _styledComponents.css)`
+        background: ${_theme.colors.red};
+        color: ${_theme.colors.white};
+    `}
+`;
+exports.Button2 = Button2;
+const Button3 = _styledComponents.default.button`
+    background: ${_theme.colors.yellow};
+    border: none;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.black};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    height: 4rem;
+    letter-spacing: 1px;
+    padding: 0 2rem;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 4.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+    `}
+
+    ${_Breakpoints.default.sm`
+        height: 4.5rem;
+        font-size: 1.8rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        height: 4rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 6rem;
+        font-size: 2rem;
+    `}
+
+    &:hover {
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && (0, _styledComponents.css)`
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+    `}
+
+    ${props => props.disabled && (0, _styledComponents.css)`
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+        opacity: 0.8;
+
+        &:hover {
+            background: ${_theme.colors.secondaryBlue};
+            color: ${_theme.colors.white};
+            box-shadow: none;
+            transform: scale(1);
+            cursor: not-allowed;
+        }
+    `}
+`;
+exports.Button3 = Button3;
+const Button4 = _styledComponents.default.button`
+    background: ${_theme.colors.white};
+    border: 1px solid red;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.black};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    height: 3rem;
+    padding: 0 1rem;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 3rem;
+        font-size: 1.2rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 4rem;
+        font-size: 1.4rem;
+    `}
+
+    &:hover {
+        background: red;
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && (0, _styledComponents.css)`
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+    `}
+`;
+exports.Button4 = Button4;
+
+const ButtonMenu = ({
+  setSidebar
+}) => {
+  return /*#__PURE__*/React.createElement(ButtonContainer, {
+    onClick: () => setSidebar(true)
+  }, /*#__PURE__*/React.createElement(_Containers.Flex, {
+    direction: 'column',
+    justify: 'space-between'
+  }, /*#__PURE__*/React.createElement(_Boxes.Box3, null, /*#__PURE__*/React.createElement(ButtonMenuLine, {
+    width: 35,
+    color: 'white'
+  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
+    marginTop: 8
+  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
+    width: 35,
+    color: 'white'
+  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
+    marginTop: 8
+  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
+    width: 35,
+    color: 'white'
+  }))));
+};
+
+exports.ButtonMenu = ButtonMenu;
+const ButtonContainer = _styledComponents.default.div`
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: ${_theme.colors.white};
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    transition: all .5s ease;
+    z-index: 101;
+
+    &:hover,
+    &:focus,
+    &:active {
+		background: ${_theme.colors.greyHover};
+        cursor: pointer;
+    }
+
+    ${_Breakpoints.default.xs`
+        left: 4rem;
+        width: 55px;
+        height: 55px;
+    `}
+
+    ${_Breakpoints.default.sm`
+        width: 60px;
+        height: 60px;
+    `}
+
+    ${_Breakpoints.default.md`
+    `}
+
+    ${_Breakpoints.default.lg`
+        display: none;
+    `}
+`;
+const ButtonMenuLine = _styledComponents.default.div`
+    background: ${_theme.colors.gold};
+
+    ${props => (0, _styledComponents.css)`
+        width: ${props.width * .8}px;
+        height: 2px;
+        margin: 0 auto;
+
+        ${_Breakpoints.default.xs`
+            width: ${props.width * .9}px;
+            height: 2px;
+            margin: 0 auto;
+        `}
+
+        ${_Breakpoints.default.sm`
+            width: ${props.width}px;
+            height: 3px;
+            margin: 0 auto;
+        `}
+    `};
+`;
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Breakpoints":"Components/Breakpoints.js","./Boxes":"Components/Boxes.js","./Containers":"Components/Containers.js"}],"Components/Filters.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53744,6 +53779,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Components
 const Profile = ({
+  setLoading,
   username,
   buttonDisabled,
   setButtonDisabled,
@@ -53755,6 +53791,7 @@ const Profile = ({
   }, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: async event => {
       event.preventDefault();
+      setLoading(true);
       const {
         fieldset,
         username
@@ -53775,6 +53812,7 @@ const Profile = ({
         fieldset.disabled = false;
       }
 
+      setLoading(false);
       setUsername(newUsername);
       setShowNotification(true);
       setTimeout(() => {
@@ -54718,6 +54756,8 @@ require("./global.css");
 
 var _theme = require("./Components/theme");
 
+var _Authors = _interopRequireDefault(require("./Components/Authors"));
+
 var _Boxes = require("./Components/Boxes");
 
 var _Buttons = require("./Components/Buttons");
@@ -54760,6 +54800,8 @@ function App() {
 
   const [filter, setFilter] = _react.default.useState('recipes');
 
+  const [authors, setAuthors] = _react.default.useState(null);
+
   _react.default.useEffect(() => {
     if (window.walletConnection.isSignedIn()) {
       window.contract.getUser({
@@ -54772,13 +54814,11 @@ function App() {
         return setUsername(usernameFromContract.username);
       });
     }
-  }, []);
 
-  const onGetGlobalUserIds = () => {
-    window.contract.getGlobalUserIds().then(resp => {
-      console.log(resp);
+    window.contract.getAllUsers().then(allUsers => {
+      return setAuthors(allUsers);
     });
-  };
+  }, [loading]);
 
   const onDeleteGlobalUser = () => {
     setLoading(true);
@@ -54805,6 +54845,9 @@ function App() {
     }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
       filter: filter,
       setFilter: setFilter
+    }), /*#__PURE__*/_react.default.createElement(_Authors.default, {
+      filter: filter,
+      authors: authors
     })));
   }
 
@@ -54828,9 +54871,8 @@ function App() {
     marginBottom: 50
   }, /*#__PURE__*/_react.default.createElement(_Buttons.Button1, {
     onClick: _utils.logout
-  }, "Sign Out"))), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: onGetGlobalUserIds
-  }, "Get All Users"), /*#__PURE__*/_react.default.createElement(_Profile.default, {
+  }, "Sign Out"))), /*#__PURE__*/_react.default.createElement(_Profile.default, {
+    setLoading: setLoading,
     username: username,
     buttonDisabled: buttonDisabled,
     setButtonDisabled: setButtonDisabled,
@@ -54839,11 +54881,14 @@ function App() {
   }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     filter: filter,
     setFilter: setFilter
+  }), /*#__PURE__*/_react.default.createElement(_Authors.default, {
+    filter: filter,
+    authors: authors
   }), showNotification && /*#__PURE__*/_react.default.createElement(_Notification.default, {
     networkId: networkId
   })));
 }
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./utils":"utils.js","./Components/Breakpoints":"Components/Breakpoints.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/Filters":"Components/Filters.js","./Components/Main":"Components/Main.js","./Components/Notification":"Components/Notification.js","./Components/Profile":"Components/Profile.js","./Components/SignedOut":"Components/SignedOut.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./utils":"utils.js","./Components/Breakpoints":"Components/Breakpoints.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Authors":"Components/Authors.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/Filters":"Components/Filters.js","./Components/Main":"Components/Main.js","./Components/Notification":"Components/Notification.js","./Components/Profile":"Components/Profile.js","./Components/SignedOut":"Components/SignedOut.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -54887,7 +54932,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54731" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60160" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

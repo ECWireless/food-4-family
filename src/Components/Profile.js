@@ -11,6 +11,7 @@ import { Button3 } from './Buttons'
 import { Flex } from './Containers'
 
 const Profile = ({
+    setLoading,
     username,
     buttonDisabled,
     setButtonDisabled,
@@ -24,6 +25,7 @@ const Profile = ({
                     <Box3 marginTop={50}>
                         <form onSubmit={async event => {
                             event.preventDefault()
+                            setLoading(true)
 
                             const { fieldset, username } = event.target.elements
                             const newUsername = username.value
@@ -46,6 +48,7 @@ const Profile = ({
                                 fieldset.disabled = false
                             }
 
+                            setLoading(false)
                             setUsername(newUsername)
                             setShowNotification(true)
                             setTimeout(() => {

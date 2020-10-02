@@ -59,3 +59,16 @@ export function deleteGlobalUser(id: string): void {
 	displayUserIds.set("global", newList);
 	users.delete(id);
 }
+
+// Gets all Users
+export function getAllUsers(): Array<User> {
+	let allUsersList = new Array<User>();
+	let userIdList = getGlobalUserIds();
+
+	for (let i: i32 = 0; i < userIdList.length; i++) {
+		let user = users.getSome(userIdList[i]);
+		allUsersList.push(user);
+	}
+	
+	return allUsersList;
+}

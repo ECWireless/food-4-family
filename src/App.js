@@ -7,6 +7,7 @@ import './global.css'
 
 // Components
 import { colors } from './Components/theme'
+import Authors from './Components/Authors'
 import { Box3 } from './Components/Boxes'
 import { Button1, Button4 } from './Components/Buttons'
 import { Container, Flex } from './Components/Containers'
@@ -26,6 +27,7 @@ export default function App() {
 	const [buttonDisabled, setButtonDisabled] = React.useState(true)
 	const [showNotification, setShowNotification] = React.useState(false)
 	const [filter, setFilter] = React.useState('recipes')
+	const [authors, setAuthors] = React.useState(null)
 
 	React.useEffect(
 		() => {
@@ -38,16 +40,13 @@ export default function App() {
 					return setUsername(usernameFromContract.username)
 				})
 			}
+			window.contract.getAllUsers()
+			.then(allUsers => {
+				return setAuthors(allUsers)
+			})
 		},
-		[]
+		[loading]
 	)
-
-	const onGetGlobalUserIds = () => {
-		window.contract.getGlobalUserIds()
-		.then(resp => {
-			console.log(resp)
-		})
-	}
 
 	const onDeleteGlobalUser = () => {
 		setLoading(true)
@@ -74,6 +73,10 @@ export default function App() {
 				/>
 				<Filters
 					filter={filter} setFilter={setFilter}
+				/>
+				<Authors
+					filter={filter}
+					authors={authors}
 				/>
 			</Container>
 		</Main>
@@ -102,9 +105,9 @@ export default function App() {
 						</Button1>
 					</Box3>
 				</Flex>
-				<button onClick={onGetGlobalUserIds}>Get All Users</button>
 
 				<Profile
+					setLoading={setLoading}
 					username={username}
 					buttonDisabled={buttonDisabled}
 					setButtonDisabled={setButtonDisabled}
@@ -113,6 +116,10 @@ export default function App() {
 				/>
 				<Filters
 					filter={filter} setFilter={setFilter}
+				/>
+				<Authors
+					filter={filter}
+					authors={authors}
 				/>
 				{showNotification && <Notification networkId={networkId} />}
 			</Container>
