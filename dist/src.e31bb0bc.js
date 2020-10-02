@@ -52336,9 +52336,9 @@ async function initContract() {
 
   window.contract = await new _nearApiJs.Contract(window.walletConnection.account(), nearConfig.contractName, {
     // View methods are read only. They don't modify the state, but usually return some value.
-    viewMethods: ['getUser'],
+    viewMethods: ['getUser', 'getUsersIdList'],
     // Change methods can modify the state. But you don't receive the returned value when called.
-    changeMethods: ['setUser']
+    changeMethods: ['setUser', 'deleteGlobalUser']
   });
 }
 
@@ -53710,7 +53710,216 @@ const Aside = _styledComponents.default.aside`
 		100% { transform: translateY(10em) }
 	}
 `;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css"}],"../node_modules/prop-types/factoryWithTypeCheckers.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css"}],"Components/Profile.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+require("regenerator-runtime/runtime");
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+require("../global.css");
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+var _theme = require("./theme");
+
+var _Boxes = require("./Boxes");
+
+var _Buttons = require("./Buttons");
+
+var _Containers = require("./Containers");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+const Profile = ({
+  username,
+  buttonDisabled,
+  setButtonDisabled,
+  setUsername,
+  setShowNotification
+}) => {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, username === null && /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: async event => {
+      event.preventDefault();
+      const {
+        fieldset,
+        username
+      } = event.target.elements;
+      const newUsername = username.value;
+      fieldset.disabled = true;
+      setButtonDisabled(true);
+
+      try {
+        await window.contract.setUser({
+          accountId: window.accountId,
+          username: newUsername
+        });
+      } catch (e) {
+        alert('Something went wrong! ' + 'Maybe you need to sign out and back in? ' + 'Check your browser console for more info.');
+        throw e;
+      } finally {
+        fieldset.disabled = false;
+      }
+
+      setUsername(newUsername);
+      setShowNotification(true);
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 11000);
+    }
+  }, /*#__PURE__*/_react.default.createElement(FieldsetUsername, {
+    id: "fieldset",
+    direction: 'column',
+    justify: 'center',
+    align: 'center'
+  }, /*#__PURE__*/_react.default.createElement(LabelUsername, {
+    center: true,
+    color: _theme.colors.white,
+    htmlFor: "username"
+  }, "Your Username:"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 25
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    justify: 'center'
+  }, /*#__PURE__*/_react.default.createElement(InputUsername, {
+    autoComplete: "off",
+    defaultValue: username,
+    id: "username",
+    onChange: e => setButtonDisabled(e.target.value === username)
+  }), /*#__PURE__*/_react.default.createElement(_Buttons.Button3, {
+    disabled: buttonDisabled,
+    style: {
+      borderRadius: '0 5px 5px 0'
+    }
+  }, "Save")))))));
+};
+
+var _default = Profile;
+exports.default = _default;
+const FieldsetUsername = _styledComponents.default.fieldset`
+	display: flex;
+
+    ${props => (0, _styledComponents.css)`
+        justify-content: ${props.justify};
+        align-items: ${props.align};
+        flex-wrap: ${props.wrap};
+        flex-direction: ${props.direction};
+        height: ${props.height};
+    `}
+
+    ${props => props.respond && (0, _styledComponents.css)`
+        flex-direction: column;
+
+        ${_Breakpoints.default.lg`
+            flex-direction: row;
+        `}
+    `}
+
+    ${props => props.respondFlip && (0, _styledComponents.css)`
+        flex-direction: column-reverse;
+
+        ${_Breakpoints.default.lg`
+            flex-direction: row;
+        `}
+    `}
+
+    ${props => props.wrap && (0, _styledComponents.css)`
+        flex-wrap: wrap;
+
+        ${_Breakpoints.default.xs`
+            justify-content: center;
+        `}
+
+        ${_Breakpoints.default.sm`
+            justify-content: flex-start;
+        `}
+    `}
+`;
+const LabelUsername = _styledComponents.default.label`
+	font-size: 2rem;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 2px;
+	font-family: 'Roboto', sans-serif;
+
+	${_Breakpoints.default.xs`
+		font-size: 2.2rem;
+		line-height: 35px;
+	`}
+
+	${_Breakpoints.default.sm`
+		font-size: 2.6rem;
+	`}
+
+	${_Breakpoints.default.md`
+		font-size: 3rem;
+	`}
+
+	${_Breakpoints.default.lg`
+		font-size: 3.5rem;
+	`}
+
+	${_Breakpoints.default.xl`
+		font-size: 4rem;
+	`}
+
+	${props => props.center && (0, _styledComponents.css)`
+		text-align: center;
+	`}
+
+	${props => props.uppercase && (0, _styledComponents.css)`
+		text-transform: uppercase;
+	`}
+
+	${props => (0, _styledComponents.css)`
+		color: ${props.color}
+	`}
+`;
+const InputUsername = _styledComponents.default.input`
+	width: 17rem;
+	outline: none;
+	padding-left: 2rem;
+	font-size: 1.8rem;
+	border-radius: 5px 0 0 5px;
+	border: 2px solid transparent;
+	transition: all .3s ease;
+
+	&:hover {
+		border: 2px solid ${_theme.colors.yellow};
+	}
+
+	&:active,
+	&:focus {
+		border: 2px solid ${_theme.colors.yellow};
+		border-left: 8px solid ${_theme.colors.yellow};
+	}
+
+	${_Breakpoints.default.xs`
+		width: 30rem;
+	`}
+
+	${_Breakpoints.default.sm`
+		width: 40rem;
+	`}
+
+	${_Breakpoints.default.xl`
+		width: 60rem;
+	`}
+`;
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js"}],"../node_modules/prop-types/factoryWithTypeCheckers.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -54521,6 +54730,8 @@ var _Main = require("./Components/Main");
 
 var _Notification = _interopRequireDefault(require("./Components/Notification"));
 
+var _Profile = _interopRequireDefault(require("./Components/Profile"));
+
 var _SignedOut = _interopRequireDefault(require("./Components/SignedOut"));
 
 var _Typography = require("./Components/Typography");
@@ -54539,7 +54750,7 @@ const {
 } = (0, _config.default)("development" || 'development');
 
 function App() {
-  const [username, setUsername] = _react.default.useState();
+  const [username, setUsername] = _react.default.useState(null);
 
   const [loading, setLoading] = _react.default.useState(false);
 
@@ -54554,22 +54765,36 @@ function App() {
       window.contract.getUser({
         accountId: window.accountId
       }).then(usernameFromContract => {
-        setUsername(usernameFromContract.username);
+        if (usernameFromContract === null) {
+          return setUsername(null);
+        }
+
+        return setUsername(usernameFromContract.username);
       });
     }
   }, []);
 
-  const onRemoveUsername = () => {
+  const onGetUsersIdList = () => {
+    window.contract.getUsersIdList().then(resp => {
+      console.log(resp);
+    });
+  };
+
+  const onDeleteGlobalUser = () => {
     setLoading(true);
-    window.contract.setUser({
-      accountId: window.accountId,
-      username: null
+    window.contract.deleteGlobalUser({
+      id: window.accountId
     }).then(() => {
       window.contract.getUser({
         accountId: window.accountId
       }).then(usernameFromContract => {
-        setUsername(usernameFromContract.username);
+        if (usernameFromContract === null) {
+          setLoading(false);
+          return setUsername(null);
+        }
+
         setLoading(false);
+        return setUsername(usernameFromContract.username);
       });
     });
   };
@@ -54598,184 +54823,27 @@ function App() {
   }, loading ? /*#__PURE__*/_react.default.createElement(_Typography.P3, {
     color: _theme.colors.white
   }, "Deleting...") : /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
-    onClick: onRemoveUsername
+    onClick: onDeleteGlobalUser
   }, "Delete Profile"))), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
     marginBottom: 50
   }, /*#__PURE__*/_react.default.createElement(_Buttons.Button1, {
     onClick: _utils.logout
-  }, "Sign Out"))), username === null && /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
-    marginTop: 50
-  }, /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: async event => {
-      event.preventDefault();
-      const {
-        fieldset,
-        username
-      } = event.target.elements;
-      const newUsername = username.value;
-      fieldset.disabled = true;
-      setButtonDisabled(true);
-
-      try {
-        await window.contract.setUser({
-          accountId: window.accountId,
-          username: newUsername
-        });
-      } catch (e) {
-        alert('Something went wrong! ' + 'Maybe you need to sign out and back in? ' + 'Check your browser console for more info.');
-        throw e;
-      } finally {
-        fieldset.disabled = false;
-      }
-
-      setUsername(newUsername);
-      setShowNotification(true);
-      setTimeout(() => {
-        setShowNotification(false);
-      }, 11000);
-    }
-  }, /*#__PURE__*/_react.default.createElement(FieldsetUsername, {
-    id: "fieldset",
-    direction: 'column',
-    justify: 'center',
-    align: 'center'
-  }, /*#__PURE__*/_react.default.createElement(LabelUsername, {
-    center: true,
-    color: _theme.colors.white,
-    htmlFor: "username"
-  }, "Your Username:"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
-    marginTop: 25
-  }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
-    justify: 'center'
-  }, /*#__PURE__*/_react.default.createElement(InputUsername, {
-    autoComplete: "off",
-    defaultValue: username,
-    id: "username",
-    onChange: e => setButtonDisabled(e.target.value === username)
-  }), /*#__PURE__*/_react.default.createElement(_Buttons.Button3, {
-    disabled: buttonDisabled,
-    style: {
-      borderRadius: '0 5px 5px 0'
-    }
-  }, "Save")))))), /*#__PURE__*/_react.default.createElement(_Filters.default, {
+  }, "Sign Out"))), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: onGetUsersIdList
+  }, "Get All Users"), /*#__PURE__*/_react.default.createElement(_Profile.default, {
+    username: username,
+    buttonDisabled: buttonDisabled,
+    setButtonDisabled: setButtonDisabled,
+    setUsername: setUsername,
+    setShowNotification: setShowNotification
+  }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     filter: filter,
     setFilter: setFilter
   }), showNotification && /*#__PURE__*/_react.default.createElement(_Notification.default, {
     networkId: networkId
   })));
 }
-
-const FieldsetUsername = _styledComponents.default.fieldset`
-	display: flex;
-
-    ${props => (0, _styledComponents.css)`
-        justify-content: ${props.justify};
-        align-items: ${props.align};
-        flex-wrap: ${props.wrap};
-        flex-direction: ${props.direction};
-        height: ${props.height};
-    `}
-
-    ${props => props.respond && (0, _styledComponents.css)`
-        flex-direction: column;
-
-        ${_Breakpoints.default.lg`
-            flex-direction: row;
-        `}
-    `}
-
-    ${props => props.respondFlip && (0, _styledComponents.css)`
-        flex-direction: column-reverse;
-
-        ${_Breakpoints.default.lg`
-            flex-direction: row;
-        `}
-    `}
-
-    ${props => props.wrap && (0, _styledComponents.css)`
-        flex-wrap: wrap;
-
-        ${_Breakpoints.default.xs`
-            justify-content: center;
-        `}
-
-        ${_Breakpoints.default.sm`
-            justify-content: flex-start;
-        `}
-    `}
-`;
-const LabelUsername = _styledComponents.default.label`
-	font-size: 2rem;
-	font-weight: 400;
-	line-height: 25px;
-	letter-spacing: 2px;
-	font-family: 'Roboto', sans-serif;
-
-	${_Breakpoints.default.xs`
-		font-size: 2.2rem;
-		line-height: 35px;
-	`}
-
-	${_Breakpoints.default.sm`
-		font-size: 2.6rem;
-	`}
-
-	${_Breakpoints.default.md`
-		font-size: 3rem;
-	`}
-
-	${_Breakpoints.default.lg`
-		font-size: 3.5rem;
-	`}
-
-	${_Breakpoints.default.xl`
-		font-size: 4rem;
-	`}
-
-	${props => props.center && (0, _styledComponents.css)`
-		text-align: center;
-	`}
-
-	${props => props.uppercase && (0, _styledComponents.css)`
-		text-transform: uppercase;
-	`}
-
-	${props => (0, _styledComponents.css)`
-		color: ${props.color}
-	`}
-`;
-const InputUsername = _styledComponents.default.input`
-	width: 17rem;
-	outline: none;
-	padding-left: 2rem;
-	font-size: 1.8rem;
-	border-radius: 5px 0 0 5px;
-	border: 2px solid transparent;
-	transition: all .3s ease;
-
-	&:hover {
-		border: 2px solid ${_theme.colors.yellow};
-	}
-
-	&:active,
-	&:focus {
-		border: 2px solid ${_theme.colors.yellow};
-		border-left: 8px solid ${_theme.colors.yellow};
-	}
-
-	${_Breakpoints.default.xs`
-		width: 30rem;
-	`}
-
-	${_Breakpoints.default.sm`
-		width: 40rem;
-	`}
-
-	${_Breakpoints.default.xl`
-		width: 60rem;
-	`}
-`;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./utils":"utils.js","./Components/Breakpoints":"Components/Breakpoints.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/Filters":"Components/Filters.js","./Components/Main":"Components/Main.js","./Components/Notification":"Components/Notification.js","./Components/SignedOut":"Components/SignedOut.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./utils":"utils.js","./Components/Breakpoints":"Components/Breakpoints.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/Filters":"Components/Filters.js","./Components/Main":"Components/Main.js","./Components/Notification":"Components/Notification.js","./Components/Profile":"Components/Profile.js","./Components/SignedOut":"Components/SignedOut.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -54819,7 +54887,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59020" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64555" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
