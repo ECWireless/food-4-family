@@ -52465,6 +52465,7 @@ exports.shadows = exports.colors = void 0;
 const colors = {
   red: '#C16868',
   yellow: '#E9E047',
+  green: '#3E7474',
   brown: '#3C3E3B',
   black: '#000',
   white: '#FFF',
@@ -52479,7 +52480,180 @@ const shadows = {
   card: '0px 3px 6px rgba(0,0,0,.4)'
 };
 exports.shadows = shadows;
-},{}],"Components/Containers.js":[function(require,module,exports) {
+},{}],"Components/Boxes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Box3 = exports.Box2 = exports.Box1 = void 0;
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Box1 = _styledComponents.default.div`
+    ${props => (0, _styledComponents.css)`
+            height: ${props.height};
+            width: ${props.width * .4}px;
+            margin-top: ${props.marginTop * .4}px;
+            margin-bottom: ${props.marginBottom * .4}px;
+            margin-left: ${props.marginLeft * .4}px;
+            margin-right: ${props.marginRight * .4}px;
+            padding-left: ${props.paddingLeft * .4}px;
+            padding-right: ${props.paddingRight * .4}px;
+            padding-top: ${props.paddingTop * .4}px;
+            padding-bottom: ${props.paddingBottom * .4}px;
+
+            ${_Breakpoints.default.xs`
+                width: ${props.width * .45}px;
+                margin-top: ${props.marginTop * .45}px;
+                margin-bottom: ${props.marginBottom * .45}px;
+                margin-left: ${props.marginLeft * .45}px;
+                margin-right: ${props.marginRight * .45}px;
+                padding-left: ${props.paddingLeft * .45}px;
+                padding-right: ${props.paddingRight * .45}px;
+                padding-top: ${props.paddingTop * .45}px;
+                padding-bottom: ${props.paddingBottom * .45}px;
+            `}
+            
+            ${_Breakpoints.default.sm`
+                width: ${props.width * .7}px;
+                margin-top: ${props.marginTop * .7}px;
+                margin-bottom: ${props.marginBottom * .7}px;
+                margin-left: ${props.marginLeft * .7}px;
+                margin-right: ${props.marginRight * .7}px;
+                padding-left: ${props.paddingLeft * .7}px;
+                padding-right: ${props.paddingRight * .7}px;
+                padding-top: ${props.paddingTop * .7}px;
+                padding-bottom: ${props.paddingBottom * .7}px;
+            `}
+
+            ${_Breakpoints.default.md`
+                width: ${props.width}px;
+                margin-top: ${props.marginTop}px;
+                margin-bottom: ${props.marginBottom}px;
+                margin-left: ${props.marginLeft}px;
+                margin-right: ${props.marginRight}px;
+                padding-left: ${props.paddingLeft}px;
+                padding-right: ${props.paddingRight}px;
+                padding-top: ${props.paddingTop}px;
+                padding-bottom: ${props.paddingBottom}px;
+            `}
+
+            ${_Breakpoints.default.xl`
+                width: ${props.width * 1.4}px;
+                margin-top: ${props.marginTop * 2}px;
+            `}
+        `};
+`;
+exports.Box1 = Box1;
+const Box2 = _styledComponents.default.div`
+    ${props => (0, _styledComponents.css)`
+            width: ${props.width * .6}px;
+            margin-top: ${props.marginTop * .5}px;
+            margin-bottom: ${props.marginBottom * .5}px;
+            margin-left: ${props.marginLeft * .5}px;
+            margin-right: ${props.marginRight * .5}px;
+            padding-top: ${props.paddingTop * .5}px;
+            padding-bottom: ${props.paddingBottom * .5}px;
+
+            ${_Breakpoints.default.xs`
+                width: ${props.width * .7}px;
+                margin-top: ${props.marginTop * .45}px;
+                margin-bottom: ${props.marginBottom * .45}px;
+                margin-left: ${props.marginLeft * .45}px;
+                margin-right: ${props.marginRight * .45}px;
+                padding-top: ${props.paddingTop * .45}px;
+                padding-bottom: ${props.paddingBottom * .45}px;
+            `}
+            
+            ${_Breakpoints.default.sm`
+                width: ${props.width}px;
+                margin-top: ${props.marginTop * .7}px;
+                margin-bottom: ${props.marginBottom * .7}px;
+                margin-left: ${props.marginLeft * .7}px;
+                margin-right: ${props.marginRight * .7}px;
+                padding-top: ${props.paddingTop * .7}px;
+                padding-bottom: ${props.paddingBottom * .7}px;
+            `}
+
+            ${_Breakpoints.default.md`
+                margin-top: ${props.marginTop}px;
+                margin-bottom: ${props.marginBottom}px;
+                margin-left: ${props.marginLeft}px;
+                margin-right: ${props.marginRight}px;
+                padding-top: ${props.paddingTop}px;
+                padding-bottom: ${props.paddingBottom}px;
+            `}
+
+            ${_Breakpoints.default.xl`
+                width: ${props.width * 1.4}px;
+            `}
+        `};
+`;
+exports.Box2 = Box2;
+const Box3 = _styledComponents.default.div`
+    ${props => (0, _styledComponents.css)`
+            width: ${props.width * .45}px;
+            margin-top: ${props.marginTop * .7}px;
+            margin-bottom: ${props.marginBottom * .7}px;
+            margin-left: ${props.marginLeft * .7}px;
+            margin-right: ${props.marginRight * .7}px;
+            padding-top: ${props.paddingTop * .7}px;
+            padding-bottom: ${props.paddingBottom * .7}px;
+            padding-left: ${props.paddingLeft * .7}px;
+            padding-right: ${props.paddingRight * .7}px;
+
+            ${_Breakpoints.default.xs`
+                width: ${props.width * .6}px;
+                margin-top: ${props.marginTop * .8}px;
+                margin-bottom: ${props.marginBottom * .8}px;
+                margin-left: ${props.marginLeft * .8}px;
+                margin-right: ${props.marginRight * .8}px;
+                padding-top: ${props.paddingTop * .8}px;
+                padding-bottom: ${props.paddingBottom * .8}px;
+                padding-left: ${props.paddingLeft * .8}px;
+                padding-right: ${props.paddingRight * .8}px;
+            `}
+            
+            ${_Breakpoints.default.sm`
+                width: ${props.width * .8}px;
+                margin-top: ${props.marginTop * .9}px;
+                margin-bottom: ${props.marginBottom * .9}px;
+                margin-left: ${props.marginLeft * .9}px;
+                margin-right: ${props.marginRight * .9}px;
+                padding-top: ${props.paddingTop * .9}px;
+                padding-bottom: ${props.paddingBottom * .9}px;
+                padding-left: ${props.paddingLeft * .9}px;
+                padding-right: ${props.paddingRight * .9}px;
+            `}
+
+            ${_Breakpoints.default.md`
+                width: ${props.width}px;
+                margin-top: ${props.marginTop}px;
+                margin-bottom: ${props.marginBottom}px;
+                margin-left: ${props.marginLeft}px;
+                margin-right: ${props.marginRight}px;
+                padding-top: ${props.paddingTop}px;
+                padding-bottom: ${props.paddingBottom}px;
+                padding-left: ${props.paddingLeft}px;
+                padding-right: ${props.paddingRight}px;
+            `}
+
+            ${_Breakpoints.default.xl`
+                width: ${props.width * 1.5}px;
+            `}
+        `};
+`;
+exports.Box3 = Box3;
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Containers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52888,7 +53062,7 @@ const P1 = _styledComponents.default.p`
 
     ${_Breakpoints.default.lg`
         font-size: 2.2rem;
-        line-height: 30px;
+        line-height: 35px;
     `}
 
     ${_Breakpoints.default.xl`
@@ -53068,11 +53242,19 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
 var _theme = require("./theme");
+
+var _Boxes = require("./Boxes");
 
 var _Containers = require("./Containers");
 
 var _Typography = require("./Typography");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53081,192 +53263,81 @@ const Authors = ({
   filter,
   authors
 }) => {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, filter === 'authors' && /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
-    justify: 'space-between'
-  }, authors === null ? /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+  const [selectedUsername, setSelectedUsername] = _react.default.useState(null);
+
+  const [selectedSender, setSelectedSender] = _react.default.useState(null);
+
+  const onSelectedAuthor = id => {
+    let authorObject = authors.filter(function (author) {
+      return author.sender === id;
+    });
+    setSelectedUsername(authorObject[0].username);
+    setSelectedSender(authorObject[0].sender);
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, filter === 'authors' && selectedUsername === null && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, authors === null ? /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    center: true,
     color: _theme.colors.white
-  }, "There are no authors.") : authors.map((author, index) => /*#__PURE__*/_react.default.createElement(_Typography.P1, {
-    color: _theme.colors.white,
-    key: index
-  }, author.username))));
+  }, "There are no authors.") : /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    wrap: 'true'
+  }, authors.map(author => /*#__PURE__*/_react.default.createElement(AuthorCard, {
+    key: author.sender,
+    onSelectedAuthor: onSelectedAuthor,
+    sender: author.sender,
+    username: author.username
+  }))))), filter === 'authors' && selectedUsername !== null && /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: () => setSelectedUsername(null)
+  }, "View all authors"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Typography.H3, {
+    color: _theme.colors.white
+  }, selectedUsername), /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white
+  }, "Account ID: ", selectedSender))));
 };
 
 var _default = Authors;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./theme":"Components/theme.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Boxes.js":[function(require,module,exports) {
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Box3 = exports.Box2 = exports.Box1 = void 0;
+const AuthorCard = ({
+  username,
+  sender,
+  onSelectedAuthor
+}) => {
+  return /*#__PURE__*/_react.default.createElement(AuthorCardBackground, {
+    onClick: onSelectedAuthor.bind(void 0, sender)
+  }, /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.black
+  }, username));
+};
 
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
+const AuthorCardBackground = _styledComponents.default.div`
+    width: 20rem;
+    height: 8rem;
+    background: ${_theme.colors.white};
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    border-radius: 5px;
+    transition: all .3s ease;
 
-var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+    &:hover {
+        cursor: pointer;
+        background: ${_theme.colors.green};
+        box-shadow: ${_theme.shadows.card};
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const Box1 = _styledComponents.default.div`
-    ${props => (0, _styledComponents.css)`
-            height: ${props.height};
-            width: ${props.width * .4}px;
-            margin-top: ${props.marginTop * .4}px;
-            margin-bottom: ${props.marginBottom * .4}px;
-            margin-left: ${props.marginLeft * .4}px;
-            margin-right: ${props.marginRight * .4}px;
-            padding-left: ${props.paddingLeft * .4}px;
-            padding-right: ${props.paddingRight * .4}px;
-            padding-top: ${props.paddingTop * .4}px;
-            padding-bottom: ${props.paddingBottom * .4}px;
-
-            ${_Breakpoints.default.xs`
-                width: ${props.width * .45}px;
-                margin-top: ${props.marginTop * .45}px;
-                margin-bottom: ${props.marginBottom * .45}px;
-                margin-left: ${props.marginLeft * .45}px;
-                margin-right: ${props.marginRight * .45}px;
-                padding-left: ${props.paddingLeft * .45}px;
-                padding-right: ${props.paddingRight * .45}px;
-                padding-top: ${props.paddingTop * .45}px;
-                padding-bottom: ${props.paddingBottom * .45}px;
-            `}
-            
-            ${_Breakpoints.default.sm`
-                width: ${props.width * .7}px;
-                margin-top: ${props.marginTop * .7}px;
-                margin-bottom: ${props.marginBottom * .7}px;
-                margin-left: ${props.marginLeft * .7}px;
-                margin-right: ${props.marginRight * .7}px;
-                padding-left: ${props.paddingLeft * .7}px;
-                padding-right: ${props.paddingRight * .7}px;
-                padding-top: ${props.paddingTop * .7}px;
-                padding-bottom: ${props.paddingBottom * .7}px;
-            `}
-
-            ${_Breakpoints.default.md`
-                width: ${props.width}px;
-                margin-top: ${props.marginTop}px;
-                margin-bottom: ${props.marginBottom}px;
-                margin-left: ${props.marginLeft}px;
-                margin-right: ${props.marginRight}px;
-                padding-left: ${props.paddingLeft}px;
-                padding-right: ${props.paddingRight}px;
-                padding-top: ${props.paddingTop}px;
-                padding-bottom: ${props.paddingBottom}px;
-            `}
-
-            ${_Breakpoints.default.xl`
-                width: ${props.width * 1.4}px;
-                margin-top: ${props.marginTop * 2}px;
-            `}
-        `};
+        p {
+            color: ${_theme.colors.white};
+        }
+    }
 `;
-exports.Box1 = Box1;
-const Box2 = _styledComponents.default.div`
-    ${props => (0, _styledComponents.css)`
-            width: ${props.width * .6}px;
-            margin-top: ${props.marginTop * .5}px;
-            margin-bottom: ${props.marginBottom * .5}px;
-            margin-left: ${props.marginLeft * .5}px;
-            margin-right: ${props.marginRight * .5}px;
-            padding-top: ${props.paddingTop * .5}px;
-            padding-bottom: ${props.paddingBottom * .5}px;
-
-            ${_Breakpoints.default.xs`
-                width: ${props.width * .7}px;
-                margin-top: ${props.marginTop * .45}px;
-                margin-bottom: ${props.marginBottom * .45}px;
-                margin-left: ${props.marginLeft * .45}px;
-                margin-right: ${props.marginRight * .45}px;
-                padding-top: ${props.paddingTop * .45}px;
-                padding-bottom: ${props.paddingBottom * .45}px;
-            `}
-            
-            ${_Breakpoints.default.sm`
-                width: ${props.width}px;
-                margin-top: ${props.marginTop * .7}px;
-                margin-bottom: ${props.marginBottom * .7}px;
-                margin-left: ${props.marginLeft * .7}px;
-                margin-right: ${props.marginRight * .7}px;
-                padding-top: ${props.paddingTop * .7}px;
-                padding-bottom: ${props.paddingBottom * .7}px;
-            `}
-
-            ${_Breakpoints.default.md`
-                margin-top: ${props.marginTop}px;
-                margin-bottom: ${props.marginBottom}px;
-                margin-left: ${props.marginLeft}px;
-                margin-right: ${props.marginRight}px;
-                padding-top: ${props.paddingTop}px;
-                padding-bottom: ${props.paddingBottom}px;
-            `}
-
-            ${_Breakpoints.default.xl`
-                width: ${props.width * 1.4}px;
-            `}
-        `};
-`;
-exports.Box2 = Box2;
-const Box3 = _styledComponents.default.div`
-    ${props => (0, _styledComponents.css)`
-            width: ${props.width * .45}px;
-            margin-top: ${props.marginTop * .7}px;
-            margin-bottom: ${props.marginBottom * .7}px;
-            margin-left: ${props.marginLeft * .7}px;
-            margin-right: ${props.marginRight * .7}px;
-            padding-top: ${props.paddingTop * .7}px;
-            padding-bottom: ${props.paddingBottom * .7}px;
-            padding-left: ${props.paddingLeft * .7}px;
-            padding-right: ${props.paddingRight * .7}px;
-
-            ${_Breakpoints.default.xs`
-                width: ${props.width * .6}px;
-                margin-top: ${props.marginTop * .8}px;
-                margin-bottom: ${props.marginBottom * .8}px;
-                margin-left: ${props.marginLeft * .8}px;
-                margin-right: ${props.marginRight * .8}px;
-                padding-top: ${props.paddingTop * .8}px;
-                padding-bottom: ${props.paddingBottom * .8}px;
-                padding-left: ${props.paddingLeft * .8}px;
-                padding-right: ${props.paddingRight * .8}px;
-            `}
-            
-            ${_Breakpoints.default.sm`
-                width: ${props.width * .8}px;
-                margin-top: ${props.marginTop * .9}px;
-                margin-bottom: ${props.marginBottom * .9}px;
-                margin-left: ${props.marginLeft * .9}px;
-                margin-right: ${props.marginRight * .9}px;
-                padding-top: ${props.paddingTop * .9}px;
-                padding-bottom: ${props.paddingBottom * .9}px;
-                padding-left: ${props.paddingLeft * .9}px;
-                padding-right: ${props.paddingRight * .9}px;
-            `}
-
-            ${_Breakpoints.default.md`
-                width: ${props.width}px;
-                margin-top: ${props.marginTop}px;
-                margin-bottom: ${props.marginBottom}px;
-                margin-left: ${props.marginLeft}px;
-                margin-right: ${props.marginRight}px;
-                padding-top: ${props.paddingTop}px;
-                padding-bottom: ${props.paddingBottom}px;
-                padding-left: ${props.paddingLeft}px;
-                padding-right: ${props.paddingRight}px;
-            `}
-
-            ${_Breakpoints.default.xl`
-                width: ${props.width * 1.5}px;
-            `}
-        `};
-`;
-exports.Box3 = Box3;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Buttons.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Buttons.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54932,7 +55003,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60160" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61321" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
