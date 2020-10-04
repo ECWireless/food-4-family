@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 // Components
 import { colors, shadows } from './theme'
 import { Box3 } from './Boxes'
+import { Button4 } from './Buttons'
 import { Flex } from './Containers'
 import { H3, P1 } from './Typography'
 
@@ -47,7 +48,7 @@ const Authors = ({
             }
             {filter === 'authors' && selectedUsername !== null && (
                 <Box3 marginTop={50}>
-                    <button onClick={() => setSelectedUsername(null)}>View all authors</button>
+                    <Button4 color={colors.yellow} onClick={() => setSelectedUsername(null)}>View all authors</Button4>
                     <Box3 marginTop={50}>
                         <H3 color={colors.white}>{selectedUsername}</H3>
                         <P1 color={colors.white}>Account ID: {selectedSender}</P1>

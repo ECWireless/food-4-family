@@ -52852,7 +52852,334 @@ const Flex = _styledComponents.default.div`
     `}
 `;
 exports.Flex = Flex;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Typography.js":[function(require,module,exports) {
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js"}],"Components/Buttons.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ButtonMenu = exports.Button4 = exports.Button3 = exports.Button2 = exports.Button1 = void 0;
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _theme = require("./theme");
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+var _Boxes = require("./Boxes");
+
+var _Containers = require("./Containers");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Button1 = _styledComponents.default.button`
+    background: ${_theme.colors.red};
+    border: none;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.white};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    height: 4rem;
+    letter-spacing: 1px;
+    padding: 0 4rem;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 4.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+    `}
+
+    ${_Breakpoints.default.sm`
+        height: 4.5rem;
+        font-size: 1.8rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        height: 5rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 6rem;
+        font-size: 2rem;
+    `}
+
+    &:hover {
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && (0, _styledComponents.css)`
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+    `}
+`;
+exports.Button1 = Button1;
+const Button2 = _styledComponents.default.button`
+    background: ${_theme.colors.white};
+    border: none;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.red};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    height: 4rem;
+    letter-spacing: 1px;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 4.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+        padding: 0 2rem;
+    `}
+
+    ${_Breakpoints.default.sm`
+        height: 4.5rem;
+        font-size: 1.8rem;
+        padding: 0 3rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        height: 6rem;
+        padding: 0 5rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 8rem;
+        font-size: 3.2rem;
+        padding: 0 7rem;
+    `}
+
+    &:hover {
+        background: ${_theme.colors.red};
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && (0, _styledComponents.css)`
+        background: ${_theme.colors.red};
+        color: ${_theme.colors.white};
+    `}
+`;
+exports.Button2 = Button2;
+const Button3 = _styledComponents.default.button`
+    background: ${_theme.colors.yellow};
+    border: none;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.black};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    height: 4rem;
+    letter-spacing: 1px;
+    padding: 0 2rem;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 4.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+    `}
+
+    ${_Breakpoints.default.sm`
+        height: 4.5rem;
+        font-size: 1.8rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        height: 4rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 6rem;
+        font-size: 2rem;
+    `}
+
+    &:hover {
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    ${props => props.active && (0, _styledComponents.css)`
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+    `}
+
+    ${props => props.disabled && (0, _styledComponents.css)`
+        background: ${_theme.colors.secondaryBlue};
+        color: ${_theme.colors.white};
+        opacity: 0.8;
+
+        &:hover {
+            background: ${_theme.colors.secondaryBlue};
+            color: ${_theme.colors.white};
+            box-shadow: none;
+            transform: scale(1);
+            cursor: not-allowed;
+        }
+    `}
+`;
+exports.Button3 = Button3;
+const Button4 = _styledComponents.default.button`
+    background: ${_theme.colors.white};
+    border: 1px solid red;
+    border-radius: 10px;
+    box-shadow: ${_theme.shadows.button};
+    color: ${_theme.colors.black};
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    height: 3rem;
+    padding: 0 1rem;
+    transition: all .3s ease;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ${_Breakpoints.default.xs`
+        height: 3rem;
+        font-size: 1.2rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        height: 4rem;
+        font-size: 1.4rem;
+    `}
+
+    ${props => props.color && (0, _styledComponents.css)`
+        border: 1px solid ${props.color};
+    `}
+
+    &:hover {
+        background: red;
+        color: ${_theme.colors.white};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+        cursor: pointer;
+
+        ${props => props.color && (0, _styledComponents.css)`
+            background: ${props.color};
+            color: ${_theme.colors.black};
+        `}
+    }
+`;
+exports.Button4 = Button4;
+
+const ButtonMenu = ({
+  setSidebar
+}) => {
+  return /*#__PURE__*/React.createElement(ButtonContainer, {
+    onClick: () => setSidebar(true)
+  }, /*#__PURE__*/React.createElement(_Containers.Flex, {
+    direction: 'column',
+    justify: 'space-between'
+  }, /*#__PURE__*/React.createElement(_Boxes.Box3, null, /*#__PURE__*/React.createElement(ButtonMenuLine, {
+    width: 35,
+    color: 'white'
+  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
+    marginTop: 8
+  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
+    width: 35,
+    color: 'white'
+  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
+    marginTop: 8
+  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
+    width: 35,
+    color: 'white'
+  }))));
+};
+
+exports.ButtonMenu = ButtonMenu;
+const ButtonContainer = _styledComponents.default.div`
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: ${_theme.colors.white};
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    transition: all .5s ease;
+    z-index: 101;
+
+    &:hover,
+    &:focus,
+    &:active {
+		background: ${_theme.colors.greyHover};
+        cursor: pointer;
+    }
+
+    ${_Breakpoints.default.xs`
+        left: 4rem;
+        width: 55px;
+        height: 55px;
+    `}
+
+    ${_Breakpoints.default.sm`
+        width: 60px;
+        height: 60px;
+    `}
+
+    ${_Breakpoints.default.md`
+    `}
+
+    ${_Breakpoints.default.lg`
+        display: none;
+    `}
+`;
+const ButtonMenuLine = _styledComponents.default.div`
+    background: ${_theme.colors.gold};
+
+    ${props => (0, _styledComponents.css)`
+        width: ${props.width * .8}px;
+        height: 2px;
+        margin: 0 auto;
+
+        ${_Breakpoints.default.xs`
+            width: ${props.width * .9}px;
+            height: 2px;
+            margin: 0 auto;
+        `}
+
+        ${_Breakpoints.default.sm`
+            width: ${props.width}px;
+            height: 3px;
+            margin: 0 auto;
+        `}
+    `};
+`;
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Breakpoints":"Components/Breakpoints.js","./Boxes":"Components/Boxes.js","./Containers":"Components/Containers.js"}],"Components/Typography.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53248,6 +53575,8 @@ var _theme = require("./theme");
 
 var _Boxes = require("./Boxes");
 
+var _Buttons = require("./Buttons");
+
 var _Containers = require("./Containers");
 
 var _Typography = require("./Typography");
@@ -53289,7 +53618,8 @@ const Authors = ({
     username: author.username
   }))))), filter === 'authors' && selectedUsername !== null && /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
     marginTop: 50
-  }, /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
+    color: _theme.colors.yellow,
     onClick: () => setSelectedUsername(null)
   }, "View all authors"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
     marginTop: 50
@@ -53337,330 +53667,7 @@ const AuthorCardBackground = _styledComponents.default.div`
         }
     }
 `;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Buttons.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ButtonMenu = exports.Button4 = exports.Button3 = exports.Button2 = exports.Button1 = void 0;
-
-var _styledComponents = _interopRequireWildcard(require("styled-components"));
-
-var _theme = require("./theme");
-
-var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
-
-var _Boxes = require("./Boxes");
-
-var _Containers = require("./Containers");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-const Button1 = _styledComponents.default.button`
-    background: ${_theme.colors.red};
-    border: none;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.white};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    height: 4rem;
-    letter-spacing: 1px;
-    padding: 0 4rem;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 4.5rem;
-        font-size: 1.4rem;
-        letter-spacing: 3px;
-    `}
-
-    ${_Breakpoints.default.sm`
-        height: 4.5rem;
-        font-size: 1.8rem;
-    `}
-
-    ${_Breakpoints.default.md`
-        height: 5rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 6rem;
-        font-size: 2rem;
-    `}
-
-    &:hover {
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-    `}
-`;
-exports.Button1 = Button1;
-const Button2 = _styledComponents.default.button`
-    background: ${_theme.colors.white};
-    border: none;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.red};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    height: 4rem;
-    letter-spacing: 1px;
-    padding: 0 1rem;
-    text-transform: uppercase;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 4.5rem;
-        font-size: 1.4rem;
-        letter-spacing: 3px;
-        padding: 0 2rem;
-    `}
-
-    ${_Breakpoints.default.sm`
-        height: 4.5rem;
-        font-size: 1.8rem;
-        padding: 0 3rem;
-    `}
-
-    ${_Breakpoints.default.md`
-        height: 6rem;
-        padding: 0 5rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 8rem;
-        font-size: 3.2rem;
-        padding: 0 7rem;
-    `}
-
-    &:hover {
-        background: ${_theme.colors.red};
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.red};
-        color: ${_theme.colors.white};
-    `}
-`;
-exports.Button2 = Button2;
-const Button3 = _styledComponents.default.button`
-    background: ${_theme.colors.yellow};
-    border: none;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.black};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    height: 4rem;
-    letter-spacing: 1px;
-    padding: 0 2rem;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 4.5rem;
-        font-size: 1.4rem;
-        letter-spacing: 3px;
-    `}
-
-    ${_Breakpoints.default.sm`
-        height: 4.5rem;
-        font-size: 1.8rem;
-    `}
-
-    ${_Breakpoints.default.md`
-        height: 4rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 6rem;
-        font-size: 2rem;
-    `}
-
-    &:hover {
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-    `}
-
-    ${props => props.disabled && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-        opacity: 0.8;
-
-        &:hover {
-            background: ${_theme.colors.secondaryBlue};
-            color: ${_theme.colors.white};
-            box-shadow: none;
-            transform: scale(1);
-            cursor: not-allowed;
-        }
-    `}
-`;
-exports.Button3 = Button3;
-const Button4 = _styledComponents.default.button`
-    background: ${_theme.colors.white};
-    border: 1px solid red;
-    border-radius: 10px;
-    box-shadow: ${_theme.shadows.button};
-    color: ${_theme.colors.black};
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    height: 3rem;
-    padding: 0 1rem;
-    transition: all .3s ease;
-    outline: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    ${_Breakpoints.default.xs`
-        height: 3rem;
-        font-size: 1.2rem;
-    `}
-
-    ${_Breakpoints.default.xl`
-        height: 4rem;
-        font-size: 1.4rem;
-    `}
-
-    &:hover {
-        background: red;
-        color: ${_theme.colors.white};
-        box-shadow: ${_theme.shadows.card};
-        transform: scale(1.02);
-        cursor: pointer;
-    }
-
-    ${props => props.active && (0, _styledComponents.css)`
-        background: ${_theme.colors.secondaryBlue};
-        color: ${_theme.colors.white};
-    `}
-`;
-exports.Button4 = Button4;
-
-const ButtonMenu = ({
-  setSidebar
-}) => {
-  return /*#__PURE__*/React.createElement(ButtonContainer, {
-    onClick: () => setSidebar(true)
-  }, /*#__PURE__*/React.createElement(_Containers.Flex, {
-    direction: 'column',
-    justify: 'space-between'
-  }, /*#__PURE__*/React.createElement(_Boxes.Box3, null, /*#__PURE__*/React.createElement(ButtonMenuLine, {
-    width: 35,
-    color: 'white'
-  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
-    marginTop: 8
-  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
-    width: 35,
-    color: 'white'
-  })), /*#__PURE__*/React.createElement(_Boxes.Box3, {
-    marginTop: 8
-  }, /*#__PURE__*/React.createElement(ButtonMenuLine, {
-    width: 35,
-    color: 'white'
-  }))));
-};
-
-exports.ButtonMenu = ButtonMenu;
-const ButtonContainer = _styledComponents.default.div`
-    position: absolute;
-    left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: ${_theme.colors.white};
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-    transition: all .5s ease;
-    z-index: 101;
-
-    &:hover,
-    &:focus,
-    &:active {
-		background: ${_theme.colors.greyHover};
-        cursor: pointer;
-    }
-
-    ${_Breakpoints.default.xs`
-        left: 4rem;
-        width: 55px;
-        height: 55px;
-    `}
-
-    ${_Breakpoints.default.sm`
-        width: 60px;
-        height: 60px;
-    `}
-
-    ${_Breakpoints.default.md`
-    `}
-
-    ${_Breakpoints.default.lg`
-        display: none;
-    `}
-`;
-const ButtonMenuLine = _styledComponents.default.div`
-    background: ${_theme.colors.gold};
-
-    ${props => (0, _styledComponents.css)`
-        width: ${props.width * .8}px;
-        height: 2px;
-        margin: 0 auto;
-
-        ${_Breakpoints.default.xs`
-            width: ${props.width * .9}px;
-            height: 2px;
-            margin: 0 auto;
-        `}
-
-        ${_Breakpoints.default.sm`
-            width: ${props.width}px;
-            height: 3px;
-            margin: 0 auto;
-        `}
-    `};
-`;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Breakpoints":"Components/Breakpoints.js","./Boxes":"Components/Boxes.js","./Containers":"Components/Containers.js"}],"Components/Filters.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Filters.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53816,7 +53823,32 @@ const Aside = _styledComponents.default.aside`
 		100% { transform: translateY(10em) }
 	}
 `;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css"}],"Components/Profile.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css"}],"Components/ProfileRecipes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _theme = require("./theme");
+
+var _Typography = require("./Typography");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+const ProfileRecipes = () => {
+  return /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white
+  }, "Add Recipes.");
+};
+
+var _default = ProfileRecipes;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","./theme":"Components/theme.js","./Typography":"Components/Typography.js"}],"Components/Profile.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53842,6 +53874,8 @@ var _Buttons = require("./Buttons");
 
 var _Containers = require("./Containers");
 
+var _ProfileRecipes = _interopRequireDefault(require("./ProfileRecipes"));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -53857,7 +53891,7 @@ const Profile = ({
   setUsername,
   setShowNotification
 }) => {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, username === null && /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, username === null ? /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
     marginTop: 50
   }, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: async event => {
@@ -53913,7 +53947,7 @@ const Profile = ({
     style: {
       borderRadius: '0 5px 5px 0'
     }
-  }, "Save")))))));
+  }, "Save")))))) : /*#__PURE__*/_react.default.createElement(_ProfileRecipes.default, null));
 };
 
 var _default = Profile;
@@ -54028,7 +54062,7 @@ const InputUsername = _styledComponents.default.input`
 		width: 60rem;
 	`}
 `;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js"}],"../node_modules/prop-types/factoryWithTypeCheckers.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./ProfileRecipes":"Components/ProfileRecipes.js"}],"../node_modules/prop-types/factoryWithTypeCheckers.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -55003,7 +55037,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61321" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51167" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

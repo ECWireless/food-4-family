@@ -202,18 +202,22 @@ export const Button4 = styled.button`
         font-size: 1.4rem;
     `}
 
+    ${props => props.color && css`
+        border: 1px solid ${props.color};
+    `}
+
     &:hover {
         background: red;
         color: ${colors.white};
         box-shadow: ${shadows.card};
         transform: scale(1.02);
         cursor: pointer;
-    }
 
-    ${props => props.active && css`
-        background: ${colors.secondaryBlue};
-        color: ${colors.white};
-    `}
+        ${props => props.color && css`
+            background: ${props.color};
+            color: ${colors.black};
+        `}
+    }
 `
 
 export const ButtonMenu = ({ setSidebar }) => {

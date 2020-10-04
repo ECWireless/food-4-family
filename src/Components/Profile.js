@@ -9,6 +9,7 @@ import { colors } from './theme'
 import { Box3 } from './Boxes'
 import { Button3 } from './Buttons'
 import { Flex } from './Containers'
+import ProfileRecipes from './ProfileRecipes'
 
 const Profile = ({
     setLoading,
@@ -21,7 +22,7 @@ const Profile = ({
     return (
         <>
             {username === null 
-                && (
+                ? (
                     <Box3 marginTop={50}>
                         <form onSubmit={async event => {
                             event.preventDefault()
@@ -87,6 +88,9 @@ const Profile = ({
                             </FieldsetUsername>
                         </form>
                     </Box3>
+                )
+                : (
+                    <ProfileRecipes />
                 )
             }
         </>
