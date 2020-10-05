@@ -1,13 +1,16 @@
-import { logging } from "near-sdk-as";
+import { context, logging } from "near-sdk-as";
 import {
-  User,
-  UserIdsList,
-  users,
-  displayUserIds,
+	User,
+	UserIdsList,
+	users,
+	displayUserIds,
+	Recipe,
+	RecipeIdsList,
+	recipes,
+	displayRecipeIds,
 } from "./model";
 
-// USERS
-
+// AUTHORS
 // Creates new User
 export function setUser(accountId: string, username: string): void {
 	let newUser = new User(username);
@@ -15,7 +18,7 @@ export function setUser(accountId: string, username: string): void {
 		'Saving username "' + username + '" for account "' + accountId + '"'
 	);
 	users.set(accountId, newUser);
-	setGlobalUserid(accountId);
+	setGlobalUserIds(accountId);
 }
 
 // Gets specific User data
@@ -28,23 +31,23 @@ export function getUser(accountId: string): User | null {
 }
 
 // Sets new User into User List
-function setGlobalUserid(id: string): void {
+function setGlobalUserIds(id: string): void {
 	let userIdList = getGlobalUserIds();
 	userIdList.push(id);
 	let newList = new UserIdsList(userIdList);
-	displayUserIds.set("global", newList);
+	displayUserIds.set("globalAuthors", newList);
 }
 
 // Gets all User IDs in User List
 export function getGlobalUserIds(): Array<string> {
-	let userIdList = displayUserIds.get("global");
+	let userIdList = displayUserIds.get("globalAuthors");
 	if (!userIdList) {
 	  return new Array<string>();
 	}
 	return userIdList.id;
 }
 
-// Deletes new User into User List
+// Deletes new User in Users List
 export function deleteGlobalUser(id: string): void {
 	const userIdList = getGlobalUserIds();
 	for (let i = 0; i < userIdList.length; i++) {
@@ -56,7 +59,7 @@ export function deleteGlobalUser(id: string): void {
 	logging.log(
 		'Deleting username "' + id + '" from blockchain'
 	);
-	displayUserIds.set("global", newList);
+	displayUserIds.set("globalAuthors", newList);
 	users.delete(id);
 }
 
@@ -71,4 +74,71 @@ export function getAllUsers(): Array<User> {
 	}
 	
 	return allUsersList;
+}
+
+// RECIPES
+// Creates new Recipe
+export function setRecipe(title: string, ingredients: string, instructions: string): void {
+	let newRecipe = new Recipe(title, ingredients, instructions);
+	let newRecipeId = context.sender + title.toLowerCase()
+	logging.log(
+		'Saving recipe "' + title + '" for account "' + context.sender + '"'
+	);
+	recipes.set(newRecipeId, newRecipe);
+	setGlobalRecipeId(newRecipeId);
+}
+
+// Gets specific Recipe data
+export function getRecipe(recipeId: string): Recipe | null {
+	if (recipes.contains(recipeId)) {
+		let recipe = recipes.getSome(recipeId);
+		return recipe
+	}
+	return null
+}
+
+// Sets new Recipe into Recipes List
+function setGlobalRecipeId(id: string): void {
+	let recipeIdList = getGlobalRecipeIds();
+	recipeIdList.push(id);
+	let newList = new RecipeIdsList(recipeIdList);
+	displayRecipeIds.set("globalRecipes", newList);
+}
+
+// Gets all Recipe IDs in Recipes List
+export function getGlobalRecipeIds(): Array<string> {
+	let recipeIdList = displayRecipeIds.get("globalRecipes");
+	if (!recipeIdList) {
+	  return new Array<string>();
+	}
+	return recipeIdList.id;
+}
+
+// Deletes new Recipe in Recipes List
+export function deleteGlobalRecipe(id: string): void {
+	const recipeIdList = getGlobalRecipeIds();
+	for (let i = 0; i < recipeIdList.length; i++) {
+	  if (id == recipeIdList[i]) {
+		recipeIdList.splice(i, 1);
+	  }
+	}
+	let newList = new RecipeIdsList(recipeIdList);
+	logging.log(
+		'Deleting recipe "' + id + '" from blockchain'
+	);
+	displayRecipeIds.set("globalRecipes", newList);
+	recipes.delete(id);
+}
+
+// Gets all Recipes
+export function getAllRecipes(): Array<Recipe> {
+	let allRecipesList = new Array<Recipe>();
+	let recipeIdList = getGlobalRecipeIds();
+
+	for (let i: i32 = 0; i < recipeIdList.length; i++) {
+		let recipe = recipes.getSome(recipeIdList[i]);
+		allRecipesList.push(recipe);
+	}
+	
+	return allRecipesList;
 }

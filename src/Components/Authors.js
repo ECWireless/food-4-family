@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import respondTo from './Breakpoints'
 
 // Components
 import { colors, shadows } from './theme'
@@ -51,7 +52,9 @@ const Authors = ({
                     <Button4 color={colors.yellow} onClick={() => setSelectedUsername(null)}>View all authors</Button4>
                     <Box3 marginTop={50}>
                         <H3 color={colors.white}>{selectedUsername}</H3>
-                        <P1 color={colors.white}>Account ID: {selectedSender}</P1>
+                        <Box3 marginTop={25}>
+                            <P1 color={colors.white}>Account ID: {selectedSender}</P1>
+                        </Box3>
                     </Box3>
                 </Box3>
             )}
@@ -74,16 +77,40 @@ const AuthorCard = ({
 }
 
 const AuthorCardBackground = styled.div`
-    width: 20rem;
-    height: 8rem;
+    width: 15rem;
+    height: 5rem;
     background: ${colors.white};
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     margin-top: 2rem;
-    margin-right: 2rem;
     border-radius: 5px;
     transition: all .3s ease;
+
+    ${respondTo.xs`
+        width: 15rem;
+        height: 5rem;
+        margin-right: 2rem;
+    `}
+
+    ${respondTo.sm`
+        height: 6rem;
+    `}
+
+    ${respondTo.md`
+        width: 18rem;
+        height: 7rem;
+    `}
+
+    ${respondTo.lg`
+        width: 20rem;
+        height: 8rem;
+    `}
+
+    ${respondTo.xl`
+        width: 25rem;
+        height: 10rem;
+    `}
 
     &:hover {
         cursor: pointer;

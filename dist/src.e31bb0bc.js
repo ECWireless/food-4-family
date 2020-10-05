@@ -52336,9 +52336,9 @@ async function initContract() {
 
   window.contract = await new _nearApiJs.Contract(window.walletConnection.account(), nearConfig.contractName, {
     // View methods are read only. They don't modify the state, but usually return some value.
-    viewMethods: ['getUser', 'getGlobalUserIds', 'getAllUsers'],
+    viewMethods: ['getUser', 'getGlobalUserIds', 'getAllUsers', 'getRecipe', 'getGlobalRecipeIds', 'getAllRecipes'],
     // Change methods can modify the state. But you don't receive the returned value when called.
-    changeMethods: ['setUser', 'deleteGlobalUser']
+    changeMethods: ['setUser', 'deleteGlobalUser', 'setRecipe', 'deleteGlobalRecipe']
   });
 }
 
@@ -52841,10 +52841,7 @@ const Flex = _styledComponents.default.div`
 
     ${props => props.wrap && (0, _styledComponents.css)`
         flex-wrap: wrap;
-
-        ${_Breakpoints.default.xs`
-            justify-content: center;
-        `}
+        justify-content: center;
 
         ${_Breakpoints.default.sm`
             justify-content: flex-start;
@@ -53571,6 +53568,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
 var _theme = require("./theme");
 
 var _Boxes = require("./Boxes");
@@ -53625,9 +53624,11 @@ const Authors = ({
     marginTop: 50
   }, /*#__PURE__*/_react.default.createElement(_Typography.H3, {
     color: _theme.colors.white
-  }, selectedUsername), /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+  }, selectedUsername), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 25
+  }, /*#__PURE__*/_react.default.createElement(_Typography.P1, {
     color: _theme.colors.white
-  }, "Account ID: ", selectedSender))));
+  }, "Account ID: ", selectedSender)))));
 };
 
 var _default = Authors;
@@ -53646,16 +53647,40 @@ const AuthorCard = ({
 };
 
 const AuthorCardBackground = _styledComponents.default.div`
-    width: 20rem;
-    height: 8rem;
+    width: 15rem;
+    height: 5rem;
     background: ${_theme.colors.white};
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     margin-top: 2rem;
-    margin-right: 2rem;
     border-radius: 5px;
     transition: all .3s ease;
+
+    ${_Breakpoints.default.xs`
+        width: 15rem;
+        height: 5rem;
+        margin-right: 2rem;
+    `}
+
+    ${_Breakpoints.default.sm`
+        height: 6rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        width: 18rem;
+        height: 7rem;
+    `}
+
+    ${_Breakpoints.default.lg`
+        width: 20rem;
+        height: 8rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        width: 25rem;
+        height: 10rem;
+    `}
 
     &:hover {
         cursor: pointer;
@@ -53667,7 +53692,7 @@ const AuthorCardBackground = _styledComponents.default.div`
         }
     }
 `;
-},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Filters.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Filters.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53725,7 +53750,135 @@ const Filters = ({
 
 var _default = Filters;
 exports.default = _default;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","../global.css":"global.css","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Main.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","../global.css":"global.css","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/Spinner.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+var _theme = require("./theme");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+const Spinner = () => {
+  return /*#__PURE__*/_react.default.createElement(LDSRing, null, /*#__PURE__*/_react.default.createElement("div", null), /*#__PURE__*/_react.default.createElement("div", null), /*#__PURE__*/_react.default.createElement("div", null), /*#__PURE__*/_react.default.createElement("div", null));
+};
+
+var _default = Spinner;
+exports.default = _default;
+const LDSRing = _styledComponents.default.div`
+    z-index: 1000;
+    width: 20rem;
+    height: 20rem;
+
+    ${_Breakpoints.default.xs`
+        width: 10rem;
+        height: 10rem;
+    `}
+
+    div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 8rem;
+        height: 8rem;
+        margin: 8px;
+        border: 6px solid ${_theme.colors.yellow};
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: ${_theme.colors.yellow} transparent transparent transparent;
+
+        ${_Breakpoints.default.xs`
+            width: 8rem;
+            height: 8rem;
+        `}
+    }
+
+    div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+
+    div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+
+    div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+
+    @keyframes lds-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+    }
+`;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js"}],"Components/Loading.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+var _Spinner = _interopRequireDefault(require("./Spinner"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+const Loading = ({
+  loading
+}) => {
+  return /*#__PURE__*/_react.default.createElement(Backdrop, {
+    loading: loading ? 'true' : 'false'
+  }, /*#__PURE__*/_react.default.createElement(_Spinner.default, null));
+};
+
+var _default = Loading;
+exports.default = _default;
+const Backdrop = _styledComponents.default.div`
+	position: fixed;
+    top: 0;
+    left: 0;
+	height: 100vh;
+	width: 100%;
+	background: #000;
+	z-index: -1;
+	opacity: 0;
+    transition: all .5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+	${props => props.loading === 'true' && (0, _styledComponents.css)`
+		z-index: 999;
+		opacity: .8;
+	`}
+`;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Spinner":"Components/Spinner.js"}],"Components/Main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53753,77 +53906,7 @@ const Main = _styledComponents.default.main`
     border-radius: 15px;
 `;
 exports.Main = Main;
-},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js"}],"Components/Notification.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Notification;
-
-require("regenerator-runtime/runtime");
-
-var _react = _interopRequireDefault(require("react"));
-
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-
-require("../global.css");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Notification({
-  networkId
-}) {
-  const urlPrefix = `https://explorer.${networkId}.near.org/accounts`;
-  return /*#__PURE__*/_react.default.createElement(Aside, null, /*#__PURE__*/_react.default.createElement("a", {
-    target: "_blank",
-    rel: "noreferrer",
-    href: `${urlPrefix}/${window.accountId}`
-  }, window.accountId), ' '
-  /* React trims whitespace around tags; insert literal space character when needed */
-  , "called method: 'setUser' in contract:", ' ', /*#__PURE__*/_react.default.createElement("a", {
-    target: "_blank",
-    rel: "noreferrer",
-    href: `${urlPrefix}/${window.contract.contractId}`
-  }, window.contract.contractId), /*#__PURE__*/_react.default.createElement("footer", null, /*#__PURE__*/_react.default.createElement("div", null, "\u2714 Succeeded"), /*#__PURE__*/_react.default.createElement("div", null, "Just now")));
-}
-
-const Aside = _styledComponents.default.aside`
-	animation: notify ease-in-out 10s;
-	background-color: #e6e6e6;
-	border-radius: 5px;
-	bottom: 0;
-	font-size: 1.4rem;
-	margin: 2rem;
-	padding: 2rem;
-	position: fixed;
-	transform: translateY(10em);
-	right: 0;
-
-	footer {
-		display: flex;
-		font-size: 1.4rem;
-		justify-content: space-between;
-		margin-top: 0.5em;
-	}
-
-	footer *:first-child {
-		color: rgb(90, 206, 132);
-		font-weight: bold;
-	}
-
-	footer *:last-child {
-		color: #555;
-	}
-	
-	@keyframes notify {
-		0% { transform: translateY(10em) }
-		5% { transform: translateY(0) }
-		95% { transform: translateY(0) }
-		100% { transform: translateY(10em) }
-	}
-`;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css"}],"Components/ProfileRecipes.js":[function(require,module,exports) {
+},{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js"}],"Components/AddRecipe.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53833,22 +53916,551 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+
+require("../global.css");
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
 var _theme = require("./theme");
+
+var _Boxes = require("./Boxes");
+
+var _Buttons = require("./Buttons");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+const AddRecipe = ({
+  setLoading,
+  setAddingRecipe
+}) => {
+  const [inputs, setInputs] = _react.default.useState({
+    title: '',
+    ingredients: '',
+    instructions: ''
+  });
+
+  const handleOnChange = e => {
+    e.persist();
+    setInputs(prev => ({ ...prev,
+      [e.target.id]: e.target.value
+    }));
+  };
+
+  const handleOnSubmit = async e => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await window.contract.setRecipe(inputs);
+    } catch (e) {
+      alert('Something went wrong! ' + 'Maybe you need to sign out and back in? ' + 'Check your browser console for more info.');
+      throw e;
+    }
+
+    setInputs(prev => ({ ...prev,
+      title: '',
+      ingredients: '',
+      instructions: ''
+    }));
+    setAddingRecipe(false);
+    setLoading(false);
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50,
+    marginBottom: 50
+  }, /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleOnSubmit
+  }, /*#__PURE__*/_react.default.createElement(FieldsetRecipe, {
+    id: "fieldset-recipe",
+    direction: 'column',
+    justify: 'flex-start',
+    align: 'flex-start'
+  }, /*#__PURE__*/_react.default.createElement(Label, {
+    color: _theme.colors.white,
+    htmlFor: "title"
+  }, "Recipe Title:"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 15,
+    marginBottom: 50
+  }, /*#__PURE__*/_react.default.createElement(Input, {
+    autoComplete: "off",
+    id: "title",
+    value: inputs.title,
+    onChange: handleOnChange
+  })), /*#__PURE__*/_react.default.createElement(Label, {
+    color: _theme.colors.white,
+    htmlFor: "ingredients"
+  }, "Recipe Ingredients:"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 15,
+    marginBottom: 50
+  }, /*#__PURE__*/_react.default.createElement(TextArea, {
+    autoComplete: "off",
+    id: "ingredients",
+    value: inputs.ingredients,
+    onChange: handleOnChange
+  })), /*#__PURE__*/_react.default.createElement(Label, {
+    color: _theme.colors.white,
+    htmlFor: "instructions"
+  }, "Recipe Instructions:"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 15,
+    marginBottom: 25
+  }, /*#__PURE__*/_react.default.createElement(TextArea, {
+    autoComplete: "off",
+    id: "instructions",
+    value: inputs.instructions,
+    onChange: handleOnChange
+  })), /*#__PURE__*/_react.default.createElement(_Buttons.Button3, {
+    type: "submit"
+  }, "Save"))));
+};
+
+var _default = AddRecipe;
+exports.default = _default;
+const FieldsetRecipe = _styledComponents.default.fieldset`
+	display: flex;
+
+    ${props => (0, _styledComponents.css)`
+        justify-content: ${props.justify};
+        align-items: ${props.align};
+        flex-wrap: ${props.wrap};
+        flex-direction: ${props.direction};
+        height: ${props.height};
+    `}
+
+    ${props => props.respond && (0, _styledComponents.css)`
+        flex-direction: column;
+
+        ${_Breakpoints.default.lg`
+            flex-direction: row;
+        `}
+    `}
+
+    ${props => props.respondFlip && (0, _styledComponents.css)`
+        flex-direction: column-reverse;
+
+        ${_Breakpoints.default.lg`
+            flex-direction: row;
+        `}
+    `}
+
+    ${props => props.wrap && (0, _styledComponents.css)`
+        flex-wrap: wrap;
+
+        ${_Breakpoints.default.xs`
+            justify-content: center;
+        `}
+
+        ${_Breakpoints.default.sm`
+            justify-content: flex-start;
+        `}
+    `}
+`;
+const Label = _styledComponents.default.label`
+    font-size: 1.6rem;
+    line-height: 20px;
+    letter-spacing: .5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: light;
+
+    ${_Breakpoints.default.sm`
+        font-size: 1.8rem;
+    `}
+
+    ${_Breakpoints.default.md`
+        font-size: 2rem;
+        line-height: 25px;
+    `}
+
+    ${_Breakpoints.default.xl`
+        font-size: 2.6rem;
+        line-height: 30px;
+    `}
+
+    ${props => props.uppercase && (0, _styledComponents.css)`
+        text-transform: uppercase;
+    `}
+
+    ${props => props.center && (0, _styledComponents.css)`
+        text-align: center;
+    `}
+
+    ${props => (0, _styledComponents.css)`
+        color: ${props.color}
+    `}
+`;
+const Input = _styledComponents.default.input`
+    width: 17rem;
+    height: 4rem;
+	outline: none;
+    font-family: 'Roboto', sans-serif;
+	padding-left: 2rem;
+	font-size: 1.8rem;
+	border-radius: 5px;
+	border: 2px solid transparent;
+	transition: all .3s ease;
+
+	&:hover {
+		border: 2px solid ${_theme.colors.yellow};
+	}
+
+	&:active,
+	&:focus {
+		border: 2px solid ${_theme.colors.yellow};
+		border-left: 8px solid ${_theme.colors.yellow};
+	}
+
+	${_Breakpoints.default.xs`
+		width: 30rem;
+	`}
+
+	${_Breakpoints.default.sm`
+		width: 50rem;
+	`}
+
+	${_Breakpoints.default.xl`
+		width: 60rem;
+	`}
+`;
+const TextArea = _styledComponents.default.textarea`
+    width: 17rem;
+    height: 15rem;
+	outline: none;
+	padding: 1rem 2rem;
+	font-size: 1.8rem;
+    font-family: 'Roboto', sans-serif;
+	border-radius: 5px;
+	border: 2px solid transparent;
+    transition: all .3s ease;
+    line-height: 25px;
+
+	&:hover {
+		border: 2px solid ${_theme.colors.yellow};
+	}
+
+	&:active,
+	&:focus {
+		border: 2px solid ${_theme.colors.yellow};
+		border-left: 8px solid ${_theme.colors.yellow};
+	}
+
+	${_Breakpoints.default.xs`
+		width: 30rem;
+	`}
+
+	${_Breakpoints.default.sm`
+		width: 50rem;
+	`}
+
+	${_Breakpoints.default.xl`
+		width: 60rem;
+	`}
+`;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js"}],"Components/YourRecipes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+require("../global.css");
+
+var _Breakpoints = _interopRequireDefault(require("./Breakpoints"));
+
+var _theme = require("./theme");
+
+var _Boxes = require("./Boxes");
+
+var _Buttons = require("./Buttons");
+
+var _Containers = require("./Containers");
 
 var _Typography = require("./Typography");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Components
-const ProfileRecipes = () => {
-  return /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+const YourRecipes = ({
+  loading,
+  setLoading
+}) => {
+  const [recipes, setRecipes] = _react.default.useState([]);
+
+  const [selectedRecipe, setSelectedRecipes] = _react.default.useState(null);
+
+  const [viewRecipes, setViewRecipes] = _react.default.useState(false);
+
+  _react.default.useEffect(() => {
+    window.contract.getAllRecipes().then(allRecipes => {
+      let yourRecipes = allRecipes.filter(function (recipe) {
+        return recipe.author === window.accountId;
+      });
+
+      if (yourRecipes.length < 1) {
+        return setRecipes(null);
+      }
+
+      return setRecipes(yourRecipes);
+    });
+  }, [loading]);
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, recipes === null ? /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 25
+  }, /*#__PURE__*/_react.default.createElement(_Typography.P1, {
     color: _theme.colors.white
-  }, "Add Recipes.");
+  }, "You have no recipes.")) : viewRecipes ? selectedRecipe === null ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 25
+  }, /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
+    onClick: () => setViewRecipes(false),
+    color: _theme.colors.yellow
+  }, "Hide Recipes:")), /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    wrap: 'true'
+  }, recipes.map(recipe => /*#__PURE__*/_react.default.createElement(IngredientCard, {
+    loading: loading,
+    key: recipe.id,
+    id: recipe.id,
+    title: recipe.title,
+    author: recipe.author,
+    setSelectedRecipes: setSelectedRecipes
+  })))) : /*#__PURE__*/_react.default.createElement(IngredientDetails, {
+    loading: loading,
+    setLoading: setLoading,
+    setSelectedRecipes: setSelectedRecipes,
+    selectedRecipe: selectedRecipe
+  }) : /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 25
+  }, /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
+    onClick: () => setViewRecipes(true),
+    color: _theme.colors.yellow
+  }, "View Your Recipes:")));
+};
+
+var _default = YourRecipes;
+exports.default = _default;
+
+const IngredientCard = ({
+  loading,
+  id,
+  title,
+  author,
+  setSelectedRecipes
+}) => {
+  const [username, setUsername] = _react.default.useState('');
+
+  _react.default.useEffect(() => {
+    window.contract.getUser({
+      accountId: author
+    }).then(usernameFromContract => {
+      if (usernameFromContract === null) {
+        return setUsername(null);
+      }
+
+      return setUsername(usernameFromContract.username);
+    });
+  }, [loading]);
+
+  return /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(IngredientBackground, {
+    onClick: () => setSelectedRecipes(id)
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    style: {
+      height: '100%'
+    },
+    direction: 'column',
+    align: 'center',
+    justify: 'center'
+  }, /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginBottom: 15
+  }, /*#__PURE__*/_react.default.createElement(_Typography.H3, {
+    center: true,
+    color: _theme.colors.yellow
+  }, title)), /*#__PURE__*/_react.default.createElement(_Typography.P3, {
+    center: true,
+    color: _theme.colors.white
+  }, "Author: ", username))));
+};
+
+const IngredientBackground = _styledComponents.default.div`
+    width: 25rem;
+    height: 10rem;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: all .3s ease;
+
+    ${_Breakpoints.default.xs`
+        width: 25rem;
+        height: 15rem;
+    `}
+
+    ${_Breakpoints.default.xl`
+        width: 45rem;
+        height: 20rem;
+    `}
+
+    &:hover {
+        cursor: pointer;
+        border: 2px solid ${_theme.colors.red};
+    }
+`;
+
+const IngredientDetails = ({
+  loading,
+  setLoading,
+  selectedRecipe,
+  setSelectedRecipes
+}) => {
+  const [fullRecipe, setFullRecipe] = _react.default.useState(null);
+
+  _react.default.useEffect(() => {
+    window.contract.getRecipe({
+      recipeId: selectedRecipe
+    }).then(recipeFromContract => {
+      if (recipeFromContract === null) {
+        return setFullRecipe(null);
+      }
+
+      return setFullRecipe(recipeFromContract);
+    });
+  }, [loading]);
+
+  const onDeleteGlobalRecipe = recipeId => {
+    setLoading(true);
+    window.contract.deleteGlobalRecipe({
+      id: recipeId
+    }).then(() => {
+      setLoading(false);
+    });
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, fullRecipe === null ? /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white
+  }, "Loading...") : /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    direction: 'column'
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
+    color: _theme.colors.yellow,
+    onClick: () => setSelectedRecipes(null)
+  }, "View all your recipes")), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Typography.H2, {
+    color: _theme.colors.yellow
+  }, fullRecipe.title)), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 25
+  }, /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginBottom: 15
+  }, /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.red
+  }, "Ingredients:")), /*#__PURE__*/_react.default.createElement(_Typography.P3, {
+    color: _theme.colors.white
+  }, fullRecipe.ingredients)), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginBottom: 15
+  }, /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.red
+  }, "Instructions:")), /*#__PURE__*/_react.default.createElement(_Typography.P3, {
+    color: _theme.colors.white
+  }, fullRecipe.instructions)), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
+    onClick: onDeleteGlobalRecipe.bind(void 0, fullRecipe.id)
+  }, "Delete recipe")))));
+};
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","../global.css":"global.css","./Breakpoints":"Components/Breakpoints.js","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js"}],"Components/ProfileRecipes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _theme = require("./theme");
+
+var _AddRecipe = _interopRequireDefault(require("./AddRecipe"));
+
+var _Boxes = require("./Boxes");
+
+var _Buttons = require("./Buttons");
+
+var _Containers = require("./Containers");
+
+var _Typography = require("./Typography");
+
+var _YourRecipes = _interopRequireDefault(require("./YourRecipes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+const ProfileRecipes = ({
+  loading,
+  setLoading
+}) => {
+  const [addingRecipe, setAddingRecipe] = _react.default.useState(false);
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !addingRecipe && /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 25
+  }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+    align: 'center'
+  }, /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white
+  }, "Add a recipe"), /*#__PURE__*/_react.default.createElement(AddIcon, {
+    onClick: () => setAddingRecipe(true)
+  }, "+"))), addingRecipe ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_AddRecipe.default, {
+    setLoading: setLoading,
+    setAddingRecipe: setAddingRecipe
+  }), /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
+    onClick: () => setAddingRecipe(false),
+    color: _theme.colors.yellow
+  }, "Cancel")) : /*#__PURE__*/_react.default.createElement(_YourRecipes.default, {
+    loading: loading,
+    setLoading: setLoading
+  }));
 };
 
 var _default = ProfileRecipes;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./theme":"Components/theme.js","./Typography":"Components/Typography.js"}],"Components/Profile.js":[function(require,module,exports) {
+const AddIcon = _styledComponents.default.button`
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    margin-left: 2rem;
+    border: 1px solid ${_theme.colors.red};
+    font-weight: 100;
+    font-size: 4rem;
+    color: ${_theme.colors.brown};
+    background: ${_theme.colors.white};
+    outline: none;
+    transition: all .3s ease;
+
+    &:hover {
+        cursor: pointer;
+        color: ${_theme.colors.white};
+        background: ${_theme.colors.red};
+        box-shadow: ${_theme.shadows.card};
+        transform: scale(1.02);
+    }
+
+    &:active {
+        transform: scale(.97);
+    }
+`;
+},{"react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./theme":"Components/theme.js","./AddRecipe":"Components/AddRecipe.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js","./YourRecipes":"Components/YourRecipes.js"}],"Components/Profile.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53884,12 +54496,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Components
 const Profile = ({
+  loading,
   setLoading,
   username,
   buttonDisabled,
   setButtonDisabled,
-  setUsername,
-  setShowNotification
+  setUsername
 }) => {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, username === null ? /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
     marginTop: 50
@@ -53919,10 +54531,6 @@ const Profile = ({
 
       setLoading(false);
       setUsername(newUsername);
-      setShowNotification(true);
-      setTimeout(() => {
-        setShowNotification(false);
-      }, 11000);
     }
   }, /*#__PURE__*/_react.default.createElement(FieldsetUsername, {
     id: "fieldset",
@@ -53947,7 +54555,10 @@ const Profile = ({
     style: {
       borderRadius: '0 5px 5px 0'
     }
-  }, "Save")))))) : /*#__PURE__*/_react.default.createElement(_ProfileRecipes.default, null));
+  }, "Save")))))) : /*#__PURE__*/_react.default.createElement(_ProfileRecipes.default, {
+    loading: loading,
+    setLoading: setLoading
+  }));
 };
 
 var _default = Profile;
@@ -54871,9 +55482,9 @@ var _Containers = require("./Components/Containers");
 
 var _Filters = _interopRequireDefault(require("./Components/Filters"));
 
-var _Main = require("./Components/Main");
+var _Loading = _interopRequireDefault(require("./Components/Loading"));
 
-var _Notification = _interopRequireDefault(require("./Components/Notification"));
+var _Main = require("./Components/Main");
 
 var _Profile = _interopRequireDefault(require("./Components/Profile"));
 
@@ -54890,22 +55501,19 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Components
-const {
-  networkId
-} = (0, _config.default)("development" || 'development');
-
+// const { networkId } = getConfig(process.env.NODE_ENV || 'development')
 function App() {
-  const [username, setUsername] = _react.default.useState(null);
-
   const [loading, setLoading] = _react.default.useState(false);
 
   const [buttonDisabled, setButtonDisabled] = _react.default.useState(true);
 
-  const [showNotification, setShowNotification] = _react.default.useState(false);
+  const [filter, setFilter] = _react.default.useState('recipes'); // Author State
 
-  const [filter, setFilter] = _react.default.useState('recipes');
 
-  const [authors, setAuthors] = _react.default.useState(null);
+  const [username, setUsername] = _react.default.useState(null);
+
+  const [authors, setAuthors] = _react.default.useState(null); // Recipe State
+
 
   _react.default.useEffect(() => {
     if (window.walletConnection.isSignedIn()) {
@@ -54956,7 +55564,7 @@ function App() {
     })));
   }
 
-  return /*#__PURE__*/_react.default.createElement(_Main.Main, null, /*#__PURE__*/_react.default.createElement(_Containers.Container, null, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Main.Main, null, /*#__PURE__*/_react.default.createElement(_Containers.Container, null, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
     respondFlip: true,
     align: 'center',
     justify: 'space-between'
@@ -54964,36 +55572,35 @@ function App() {
     color: _theme.colors.white
   }, window.accountId, ", add a username to create your profile.") : /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
     direction: 'column'
-  }, /*#__PURE__*/_react.default.createElement(_Typography.H3, {
+  }, /*#__PURE__*/_react.default.createElement(_Typography.H2, {
     color: _theme.colors.white
   }, username, "'s Profile"), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
-    marginTop: 15
-  }, loading ? /*#__PURE__*/_react.default.createElement(_Typography.P3, {
-    color: _theme.colors.white
-  }, "Deleting...") : /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
+    marginTop: 25,
+    marginBottom: 50
+  }, /*#__PURE__*/_react.default.createElement(_Buttons.Button4, {
     onClick: onDeleteGlobalUser
   }, "Delete Profile"))), /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
     marginBottom: 50
   }, /*#__PURE__*/_react.default.createElement(_Buttons.Button1, {
     onClick: _utils.logout
   }, "Sign Out"))), /*#__PURE__*/_react.default.createElement(_Profile.default, {
+    loading: loading,
     setLoading: setLoading,
     username: username,
     buttonDisabled: buttonDisabled,
     setButtonDisabled: setButtonDisabled,
-    setUsername: setUsername,
-    setShowNotification: setShowNotification
+    setUsername: setUsername
   }), /*#__PURE__*/_react.default.createElement(_Filters.default, {
     filter: filter,
     setFilter: setFilter
   }), /*#__PURE__*/_react.default.createElement(_Authors.default, {
     filter: filter,
     authors: authors
-  }), showNotification && /*#__PURE__*/_react.default.createElement(_Notification.default, {
-    networkId: networkId
-  })));
+  }))), /*#__PURE__*/_react.default.createElement(_Loading.default, {
+    loading: loading
+  }));
 }
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./utils":"utils.js","./Components/Breakpoints":"Components/Breakpoints.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Authors":"Components/Authors.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/Filters":"Components/Filters.js","./Components/Main":"Components/Main.js","./Components/Notification":"Components/Notification.js","./Components/Profile":"Components/Profile.js","./Components/SignedOut":"Components/SignedOut.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","./utils":"utils.js","./Components/Breakpoints":"Components/Breakpoints.js","./global.css":"global.css","./Components/theme":"Components/theme.js","./Components/Authors":"Components/Authors.js","./Components/Boxes":"Components/Boxes.js","./Components/Buttons":"Components/Buttons.js","./Components/Containers":"Components/Containers.js","./Components/Filters":"Components/Filters.js","./Components/Loading":"Components/Loading.js","./Components/Main":"Components/Main.js","./Components/Profile":"Components/Profile.js","./Components/SignedOut":"Components/SignedOut.js","./Components/Typography":"Components/Typography.js","./config":"config.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -55037,7 +55644,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51167" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55365" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

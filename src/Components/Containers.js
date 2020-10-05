@@ -171,10 +171,7 @@ export const Flex = styled.div`
 
     ${props => props.wrap && css`
         flex-wrap: wrap;
-
-        ${respondTo.xs`
-            justify-content: center;
-        `}
+        justify-content: center;
 
         ${respondTo.sm`
             justify-content: flex-start;

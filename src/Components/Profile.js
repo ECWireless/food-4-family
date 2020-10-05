@@ -12,12 +12,12 @@ import { Flex } from './Containers'
 import ProfileRecipes from './ProfileRecipes'
 
 const Profile = ({
+    loading,
     setLoading,
     username,
     buttonDisabled,
     setButtonDisabled,
     setUsername,
-    setShowNotification,
 }) => {
     return (
         <>
@@ -51,10 +51,6 @@ const Profile = ({
 
                             setLoading(false)
                             setUsername(newUsername)
-                            setShowNotification(true)
-                            setTimeout(() => {
-                                setShowNotification(false)
-                            }, 11000)
                         }}>
                             <FieldsetUsername
                                 id="fieldset"
@@ -90,7 +86,10 @@ const Profile = ({
                     </Box3>
                 )
                 : (
-                    <ProfileRecipes />
+                    <ProfileRecipes
+                        loading={loading}
+                        setLoading={setLoading}
+                    />
                 )
             }
         </>
