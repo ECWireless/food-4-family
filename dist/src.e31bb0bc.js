@@ -53810,7 +53810,9 @@ const Authors = ({
     marginTop: 25
   }, /*#__PURE__*/_react.default.createElement(_Typography.H4, {
     color: _theme.colors.red
-  }, "Their Recipes:"), /*#__PURE__*/_react.default.createElement(_Recipes.default, {
+  }, "Their Recipes:"), filteredRecipes[0] === undefined ? /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+    color: _theme.colors.white
+  }, "No Recipes") : /*#__PURE__*/_react.default.createElement(_Recipes.default, {
     recipes: filteredRecipes,
     loading: loading,
     setLoading: setLoading
@@ -55531,8 +55533,8 @@ if ("development" !== 'production') {
 "use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}function wrap(e,t,a,r){return"in"in e&&(e.when=e.in),_react2.default.Children.count(r)<2?_react2.default.createElement(_RevealBase2.default,_extends({},e,{inEffect:t,outEffect:a,children:r})):(r=_react2.default.Children.map(r,function(r){return _react2.default.createElement(_RevealBase2.default,_extends({},e,{inEffect:t,outEffect:a,children:r}))}),"Fragment"in _react2.default?_react2.default.createElement(_react2.default.Fragment,null,r):_react2.default.createElement("span",null,r))}Object.defineProperty(exports,"__esModule",{value:!0});var _extends=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var r in a)Object.prototype.hasOwnProperty.call(a,r)&&(e[r]=a[r])}return e};exports.default=wrap;var _react=require("react"),_react2=_interopRequireDefault(_react),_RevealBase=require("./RevealBase"),_RevealBase2=_interopRequireDefault(_RevealBase);module.exports=exports.default;
 },{"react":"../node_modules/react/index.js","./RevealBase":"../node_modules/react-reveal/RevealBase.js"}],"../node_modules/react-reveal/Fade.js":[function(require,module,exports) {
 "use strict";function _interopRequireDefault(o){return o&&o.__esModule?o:{default:o}}function _objectWithoutProperties(o,e){var r={};for(var t in o)e.indexOf(t)>=0||Object.prototype.hasOwnProperty.call(o,t)&&(r[t]=o[t]);return r}function make(o,e){var r=e.distance,t=e.left,p=e.right,a=e.up,l=e.down,i=e.top,u=e.bottom,n=e.big,s=e.mirror,d=e.opposite,_=(r?r.toString():0)+((t?1:0)|(p?2:0)|(i||l?4:0)|(u||a?8:0)|(s?16:0)|(d?32:0)|(o?64:0)|(n?128:0));if(lookup.hasOwnProperty(_))return lookup[_];var f=t||p||a||l||i||u,y=void 0,b=void 0;if(f){if(!s!=!(o&&d)){var v=[p,t,u,i,l,a];t=v[0],p=v[1],i=v[2],u=v[3],a=v[4],l=v[5]}var c=r||(n?"2000px":"100%");y=t?"-"+c:p?c:"0",b=l||i?"-"+c:a||u?c:"0"}return lookup[_]=(0,_globals.animation)((o?"to":"from")+" {opacity: 0;"+(f?" transform: translate3d("+y+", "+b+", 0);":"")+"}\n     "+(o?"from":"to")+" {opacity: 1;transform: none;} "),lookup[_]}function Fade(){var o=arguments.length>0&&void 0!==arguments[0]?arguments[0]:_globals.defaults,e=arguments.length>1&&void 0!==arguments[1]&&arguments[1],r=o.children,t=(o.out,o.forever),p=o.timeout,a=o.duration,l=void 0===a?_globals.defaults.duration:a,i=o.delay,u=void 0===i?_globals.defaults.delay:i,n=o.count,s=void 0===n?_globals.defaults.count:n,d=_objectWithoutProperties(o,["children","out","forever","timeout","duration","delay","count"]),_={make:make,duration:void 0===p?l:p,delay:u,forever:t,count:s,style:{animationFillMode:"both"},reverse:d.left};return e?(0,_wrap2.default)(d,_,_,r):_}Object.defineProperty(exports,"__esModule",{value:!0});var _propTypes=require("prop-types"),_globals=require("./globals"),_wrap=require("./wrap"),_wrap2=_interopRequireDefault(_wrap),propTypes={out:_propTypes.bool,left:_propTypes.bool,right:_propTypes.bool,top:_propTypes.bool,bottom:_propTypes.bool,big:_propTypes.bool,mirror:_propTypes.bool,opposite:_propTypes.bool,duration:_propTypes.number,timeout:_propTypes.number,distance:_propTypes.string,delay:_propTypes.number,count:_propTypes.number,forever:_propTypes.bool},lookup={};Fade.propTypes=propTypes,exports.default=Fade,module.exports=exports.default;
-},{"prop-types":"../node_modules/prop-types/index.js","./globals":"../node_modules/react-reveal/globals.js","./wrap":"../node_modules/react-reveal/wrap.js"}],"assets/waffle.jpg":[function(require,module,exports) {
-module.exports = "/waffle.35f6503f.jpg";
+},{"prop-types":"../node_modules/prop-types/index.js","./globals":"../node_modules/react-reveal/globals.js","./wrap":"../node_modules/react-reveal/wrap.js"}],"assets/waffle.png":[function(require,module,exports) {
+module.exports = "/waffle.5c8c0de3.png";
 },{}],"Components/SignedOut.js":[function(require,module,exports) {
 "use strict";
 
@@ -55563,7 +55565,7 @@ var _Containers = require("./Containers");
 
 var _Typography = require("./Typography");
 
-var _waffle = _interopRequireDefault(require("../assets/waffle.jpg"));
+var _waffle = _interopRequireDefault(require("../assets/waffle.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55616,11 +55618,9 @@ exports.default = _default;
 const Logo = _styledComponents.default.div`
 	height: 30rem;
 	width: 20rem;
-	background: ${_theme.colors.red};
 	background-position: center;
 	background-size: cover;
 	border-radius: 15px;
-	border: 5px solid ${_theme.colors.white};
 
 	${_Breakpoints.default.xs`
 		height: 30rem;
@@ -55629,7 +55629,7 @@ const Logo = _styledComponents.default.div`
 
 	${_Breakpoints.default.sm`
 		height: 30rem;
-		width: 40rem;
+        width: 40rem;
     `}
 
 	${_Breakpoints.default.xl`
@@ -55637,7 +55637,7 @@ const Logo = _styledComponents.default.div`
 		width: 60rem;
     `}
 `;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-reveal/Fade":"../node_modules/react-reveal/Fade.js","./Breakpoints":"Components/Breakpoints.js","../global.css":"global.css","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js","../assets/waffle.jpg":"assets/waffle.jpg"}],"App.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","react":"../node_modules/react/index.js","styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js","react-reveal/Fade":"../node_modules/react-reveal/Fade.js","./Breakpoints":"Components/Breakpoints.js","../global.css":"global.css","./theme":"Components/theme.js","./Boxes":"Components/Boxes.js","./Buttons":"Components/Buttons.js","./Containers":"Components/Containers.js","./Typography":"Components/Typography.js","../assets/waffle.png":"assets/waffle.png"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55837,7 +55837,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61297" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50016" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

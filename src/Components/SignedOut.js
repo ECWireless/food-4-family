@@ -13,7 +13,7 @@ import { Flex, Col2, Col2Left, Col2Right } from './Containers'
 import { H1, P1 } from './Typography'
 
 // Images
-import LogoImage from '../assets/waffle.jpg'
+import LogoImage from '../assets/waffle.png'
 
 const SignedOut = ({
     login,
@@ -64,11 +64,9 @@ export default SignedOut
 const Logo = styled.div`
 	height: 30rem;
 	width: 20rem;
-	background: ${colors.red};
 	background-position: center;
 	background-size: cover;
 	border-radius: 15px;
-	border: 5px solid ${colors.white};
 
 	${respondTo.xs`
 		height: 30rem;
@@ -77,7 +75,7 @@ const Logo = styled.div`
 
 	${respondTo.sm`
 		height: 30rem;
-		width: 40rem;
+        width: 40rem;
     `}
 
 	${respondTo.xl`

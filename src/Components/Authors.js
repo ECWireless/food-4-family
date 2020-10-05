@@ -64,11 +64,13 @@ const Authors = ({
                         </Box3>
                         <Box3 marginTop={25}>
                             <H4 color={colors.red}>Their Recipes:</H4>
-                            <Recipes
+                            {filteredRecipes[0] === undefined
+                            ? <P1 color={colors.white}>No Recipes</P1>
+                            : <Recipes
                                 recipes={filteredRecipes}
                                 loading={loading}
                                 setLoading={setLoading}
-                            />
+                            />}
                         </Box3>
                     </Box3>
                 </Box3>
