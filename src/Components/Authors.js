@@ -37,7 +37,11 @@ const Authors = ({
             {selectedUsername === null &&
                 (<>{
                     authors === null
-                    ? <P1 center color={colors.white}>There are no authors.</P1>
+                    ? (
+                        <Box3 marginTop={50}>
+                            <P1 center color={colors.white}>There are no authors.</P1>
+                        </Box3>
+                    )
                     : (
                         <Box3 marginTop={50}>
                             <Flex wrap={'true'}>
