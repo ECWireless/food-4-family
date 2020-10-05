@@ -13,7 +13,7 @@ Food4Family is a relatively simple web app that allows users to share recipes on
 2. All Recipes, Families, and Users are housed on the NEAR blockchain. On top of this, governance over family decisions (i.e. which recipes are allowed into the cook book) is also completely handled by the blockchain. In the future, plenty of other governance and ownership features can be added as needed.
 
 Future plans involve:
-   - Adding functionality to create families
+   - Adding functionality to create Families
    - Provide a simple voting mechanism (likely through Snapshot), which would allow Users to vote which Users become part of their Family, and which Recipes get added to the Cook Book
 
 ## Project Team
