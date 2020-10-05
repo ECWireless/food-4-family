@@ -10,79 +10,41 @@ import { Button4 } from './Buttons'
 import { Flex } from './Containers'
 import { H2, H3, P1, P3 } from './Typography'
 
-const YourRecipes = ({
+const Recipes = ({
+    recipes,
     loading,
     setLoading,
 }) => {
-    const [recipes, setRecipes] = React.useState([])
     const [selectedRecipe, setSelectedRecipes] = React.useState(null)
-    const [viewRecipes, setViewRecipes] = React.useState(false)
-    
-    React.useEffect(
-		() => {
-			window.contract.getAllRecipes()
-			.then(allRecipes => {
-                let yourRecipes = allRecipes.filter(function(recipe) {
-                    return recipe.author === window.accountId;
-                })
 
-                if (yourRecipes.length < 1) {
-                    return setRecipes(null)
-                }
-                return setRecipes(yourRecipes)
-            })
-		},
-		[loading]
-    )
-    
     return (
         <>
-            {recipes === null
-                ? (
-                    <Box3 marginTop={25}>
-                        <P1 color={colors.white}>You have no recipes.</P1>
-                    </Box3>
-                )
-                : viewRecipes
-                    ? selectedRecipe === null
-                        ? (
-                            <>
-                                <Box3 marginTop={25}>
-                                    <Button4 onClick={() => setViewRecipes(false)} color={colors.yellow}>Hide Recipes:</Button4>
-                                </Box3>
-                                <Flex wrap={'true'}>
-                                    {recipes.map(recipe => (
-                                        <IngredientCard
-                                            loading={loading}
-                                            key={recipe.id}
-                                            id={recipe.id}
-                                            title={recipe.title}
-                                            author={recipe.author}
-                                            setSelectedRecipes={setSelectedRecipes}
-                                        />
-                                    ))}
-                                </Flex>
-                            </>
-                        )
-                        : (
-                            <IngredientDetails
-                                loading={loading}
-                                setLoading={setLoading}
-                                setSelectedRecipes={setSelectedRecipes}
-                                selectedRecipe={selectedRecipe}
-                            />
-                        )
-                    : (
-                        <Box3 marginTop={25}>
-                            <Button4 onClick={() => setViewRecipes(true)} color={colors.yellow}>View Your Recipes:</Button4>
-                        </Box3>
-                    )
+            {recipes !== null && selectedRecipe === null && <Flex wrap={'true'}>
+                {recipes.map(recipe => (
+                    <IngredientCard
+                        loading={loading}
+                        key={recipe.id}
+                        id={recipe.id}
+                        title={recipe.title}
+                        author={recipe.author}
+                        setSelectedRecipes={setSelectedRecipes}
+                    />
+                ))}
+            </Flex>}
+            {recipes !== null && selectedRecipe !== null && (
+                <IngredientDetails
+                    loading={loading}
+                    setLoading={setLoading}
+                    setSelectedRecipes={setSelectedRecipes}
+                    selectedRecipe={selectedRecipe}
+                />
+            )
             }
         </>
     )
 }
 
-export default YourRecipes
+export default Recipes
 
 const IngredientCard = ({
     loading,
@@ -111,7 +73,7 @@ const IngredientCard = ({
         <Box3 marginTop={50}>
             <IngredientBackground onClick={() => setSelectedRecipes(id)}>
                 <Flex style={{ height: '100%' }} direction={'column'} align={'center'} justify={'center'}>
-                    <Box3 marginBottom={15} marginBottom={25}>
+                    <Box3 marginBottom={15}>
                         <H3 center color={colors.yellow}>{title}</H3>
                     </Box3>
                     <P3 center color={colors.white}>Author: {username}</P3>
@@ -146,7 +108,6 @@ const IngredientBackground = styled.div`
 
 const IngredientDetails = ({
     loading,
-    setLoading,
     selectedRecipe,
     setSelectedRecipes,
 }) => {
@@ -165,14 +126,6 @@ const IngredientDetails = ({
 		[loading]
     )
 
-    const onDeleteGlobalRecipe = (recipeId) => {
-		setLoading(true)
-		window.contract.deleteGlobalRecipe({ id: recipeId })
-		.then(() => {
-            setLoading(false)
-		})
-	}
-
     return (
         <>
             {fullRecipe === null ? <P1 color={colors.white}>Loading...</P1>
@@ -180,9 +133,9 @@ const IngredientDetails = ({
                 <Box3 marginTop={50}>
                     <Flex direction={'column'}>
                         <div>
-                            <Button4 color={colors.yellow} onClick={() => setSelectedRecipes(null)}>View all your recipes</Button4>
+                            <Button4 color={colors.yellow} onClick={() => setSelectedRecipes(null)}>View All Recipes</Button4>
                         </div>
-                        <Box3 marginTop={50}>
+                        <Box3 marginTop={50} marginBottom={25}>
                             <H2 color={colors.yellow}>{fullRecipe.title}</H2>
                         </Box3>
                         <Box3 marginTop={25}>
@@ -196,9 +149,6 @@ const IngredientDetails = ({
                                 <P1 color={colors.red}>Instructions:</P1>
                             </Box3>
                             <P3 color={colors.white}>{fullRecipe.instructions}</P3>
-                        </Box3>
-                        <Box3 marginTop={50}>
-                            <Button4 onClick={onDeleteGlobalRecipe.bind(this, fullRecipe.id)}>Delete recipe</Button4>
                         </Box3>
                     </Flex>
                 </Box3>

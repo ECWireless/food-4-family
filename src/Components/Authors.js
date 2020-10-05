@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import respondTo from './Breakpoints'
 
 // Components
@@ -7,14 +7,18 @@ import { colors, shadows } from './theme'
 import { Box3 } from './Boxes'
 import { Button4 } from './Buttons'
 import { Flex } from './Containers'
-import { H3, P1 } from './Typography'
+import Recipes from './Recipes'
+import { H3, H4, P1 } from './Typography'
 
 const Authors = ({
-    filter,
     authors,
+    recipes,
+    loading,
+    setLoading,
 }) => {
     const [selectedUsername, setSelectedUsername] = React.useState(null)
     const [selectedSender, setSelectedSender] = React.useState(null)
+    const [filteredRecipes, setFilteredRecipes] = React.useState(null)
 
     const onSelectedAuthor = (id) => {
         let authorObject = authors.filter(function(author) {
@@ -23,11 +27,14 @@ const Authors = ({
 
         setSelectedUsername(authorObject[0].username)
         setSelectedSender(authorObject[0].sender)
+        setFilteredRecipes(recipes.filter(function(recipe) {
+            return recipe.author === id;
+        }))
     }
 
     return (
         <>
-            {filter === 'authors' && selectedUsername === null &&
+            {selectedUsername === null &&
                 (<>{
                     authors === null
                     ? <P1 center color={colors.white}>There are no authors.</P1>
@@ -47,13 +54,21 @@ const Authors = ({
                     )
                 }</>)
             }
-            {filter === 'authors' && selectedUsername !== null && (
+            {selectedUsername !== null && (
                 <Box3 marginTop={50}>
                     <Button4 color={colors.yellow} onClick={() => setSelectedUsername(null)}>View all authors</Button4>
                     <Box3 marginTop={50}>
                         <H3 color={colors.white}>{selectedUsername}</H3>
                         <Box3 marginTop={25}>
                             <P1 color={colors.white}>Account ID: {selectedSender}</P1>
+                        </Box3>
+                        <Box3 marginTop={25}>
+                            <H4 color={colors.red}>Their Recipes:</H4>
+                            <Recipes
+                                recipes={filteredRecipes}
+                                loading={loading}
+                                setLoading={setLoading}
+                            />
                         </Box3>
                     </Box3>
                 </Box3>

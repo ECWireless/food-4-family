@@ -9,12 +9,10 @@ import {
 export class User {
     sender: string;
     username: string;
-    recipeIds: Array<string>
   
     constructor(username: string) {
         this.sender = context.sender;
         this.username = username;
-        this.recipeIds = new Array<string>();
     }
 }
 

@@ -1,8 +1,6 @@
 import 'regenerator-runtime/runtime'
 import React from 'react'
-import styled, { css } from 'styled-components'
 import { login, logout } from './utils'
-import respondTo from './Components/Breakpoints'
 import './global.css'
 
 // Components
@@ -15,22 +13,19 @@ import Filters from './Components/Filters'
 import Loading from './Components/Loading'
 import { Main } from './Components/Main'
 import Profile from './Components/Profile'
+import Recipes from './Components/Recipes'
 import SignedOut from './Components/SignedOut'
 import { H2, P1 } from './Components/Typography'
-
-import getConfig from './config'
-// const { networkId } = getConfig(process.env.NODE_ENV || 'development')
 
 export default function App() {
 	const [loading, setLoading] = React.useState(false)
 	const [buttonDisabled, setButtonDisabled] = React.useState(true)
 	const [filter, setFilter] = React.useState('recipes')
 
-	// Author State
 	const [username, setUsername] = React.useState(null)
 	const [authors, setAuthors] = React.useState(null)
+	const [recipes, setRecipes] = React.useState(null)
 
-	// Recipe State
 	
 	React.useEffect(
 		() => {
@@ -46,6 +41,10 @@ export default function App() {
 			window.contract.getAllUsers()
 			.then(allUsers => {
 				return setAuthors(allUsers)
+			})
+			window.contract.getAllRecipes()
+			.then(allRecipes => {
+				return setRecipes(allRecipes)
 			})
 		},
 		[loading]
@@ -77,10 +76,17 @@ export default function App() {
 				<Filters
 					filter={filter} setFilter={setFilter}
 				/>
-				<Authors
-					filter={filter}
+				{filter === 'authors' && <Authors
 					authors={authors}
-				/>
+					recipes={recipes}
+					loading={loading}
+					setLoading={setLoading}
+				/>}
+				{filter === 'recipes' && <Recipes
+					recipes={recipes}
+					loading={loading}
+					setLoading={setLoading}
+				/>}
 			</Container>
 		</Main>
 		)
@@ -120,10 +126,17 @@ export default function App() {
 					<Filters
 						filter={filter} setFilter={setFilter}
 					/>
-					<Authors
-						filter={filter}
+					{filter === 'authors' && <Authors
 						authors={authors}
-					/>
+						recipes={recipes}
+						loading={loading}
+						setLoading={setLoading}
+					/>}
+					{filter === 'recipes' && <Recipes
+						recipes={recipes}
+						loading={loading}
+						setLoading={setLoading}
+					/>}
 				</Container>
 			</Main>
 			<Loading
