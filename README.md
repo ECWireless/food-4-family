@@ -15,6 +15,7 @@ Food4Family is a relatively simple web app that allows users to share recipes on
 Future plans involve:
    - Adding functionality to create Families
    - Provide a simple voting mechanism (likely through Snapshot), which would allow Users to vote which Users become part of their Family, and which Recipes get added to the Cook Book
+   - Adding a decentralized system for uploading photos for both Users and Recipes
 
 ## Project Team
 Elliott Conway @ECWireless
