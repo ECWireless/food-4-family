@@ -62,14 +62,14 @@ const SignedOut = ({
 export default SignedOut
 
 const Logo = styled.div`
-	height: 30rem;
+	height: 15rem;
 	width: 20rem;
 	background-position: center;
 	background-size: cover;
 	border-radius: 15px;
 
 	${respondTo.xs`
-		height: 30rem;
+		height: 25rem;
 		width: 30rem;
     `}
 

@@ -1,9 +1,10 @@
 # Hack The Rainbow :rainbow:
 
-## Food4Family
+## Name of Project
+Food4Family
 <br> 
 
-## Project Description*
+## Project Description
 <br>
 Food4Family is a relatively simple web app that allows users to share recipes online. This differs from standard recipe sites in two key ways:
 
@@ -15,7 +16,7 @@ Future plans involve:
    - Adding functionality to create families
    - Provide a simple voting mechanism (likely through Snapshot), which would allow Users to vote which Users become part of their Family, and which Recipes get added to the Cook Book
 
-## Project Team*
+## Project Team
 Elliott Conway @ECWireless
 <br>
 

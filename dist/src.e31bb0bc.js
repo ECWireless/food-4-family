@@ -53781,10 +53781,12 @@ const Authors = ({
     }));
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, selectedUsername === null && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, authors === null ? /*#__PURE__*/_react.default.createElement(_Typography.P1, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, selectedUsername === null && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, authors === null ? /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+    marginTop: 50
+  }, /*#__PURE__*/_react.default.createElement(_Typography.P1, {
     center: true,
     color: _theme.colors.white
-  }, "There are no authors.") : /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
+  }, "There are no authors.")) : /*#__PURE__*/_react.default.createElement(_Boxes.Box3, {
     marginTop: 50
   }, /*#__PURE__*/_react.default.createElement(_Containers.Flex, {
     wrap: 'true'
@@ -55616,14 +55618,14 @@ const SignedOut = ({
 var _default = SignedOut;
 exports.default = _default;
 const Logo = _styledComponents.default.div`
-	height: 30rem;
+	height: 15rem;
 	width: 20rem;
 	background-position: center;
 	background-size: cover;
 	border-radius: 15px;
 
 	${_Breakpoints.default.xs`
-		height: 30rem;
+		height: 25rem;
 		width: 30rem;
     `}
 
@@ -55837,7 +55839,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50016" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55003" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
